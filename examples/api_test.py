@@ -27,7 +27,7 @@ def main():
     print("\n\nStarted populating")
     # Starting and populating Gutenberg cache for fast metadata queries.
     # WARNING - TAKES A LOT OF TIME!!!!!!!!!!!!!!!!!!!!
-    cache = SleepycarMetadataCache('/../cache/gutenberg/metadata/cache.db')
+    cache = SleepycatMetadataCache('/../cache/gutenberg/metadata/cache.db')
     cache.populate()
     set_metadata_cache(cache)
     print("\n\nFinished populating")
