@@ -27,20 +27,25 @@ def main():
     # Starting and populating Gutenberg cache for fast metadata queries.
     # WARNING - TAKES A LOT OF TIME!!!!!!!!!!!!!!!!!!!! (For me was around an hour)
     # NEEDS TO BE DONE ONLY ONCE!!!!!!!!
+    # print("\n\nStarted populating")
+    # cache = get_metadata_cache()
+    # cache.populate()
+    # print("\n\nFinished populating")
 
-    print("\n\nStarted populating")
-    cache = get_metadata_cache()
-    cache.populate()
-    print("\n\nFinished populating")
+    # Getting the title of the first 3000 books on Project Gutenberg (EXTREMELY FAST)
+    for i in range(1, 3000):
+        title = list(get_metadata('title', i))
+        if title:
+            print(title[0])
 
-    print(get_metadata('title', 2701))
-
-    # for i in range(1, 3000):
-    #     try:
-    #         book = gc.book(i)
-    #         print(f"{book.title} - published in {dict(dict(book.work)['original_publication_year'])['#text']}")
-    #     except (request.GoodreadsRequestException, KeyError):
-    #         continue
+    # Getting the titles and publishing years for the first 3000 books on Goodreads
+    # Pretty slow because Goodreads allows 1 request per second
+    for i in range(1, 3000):
+        try:
+            book = gc.book(i)
+            print(f"{book.title} - published in {dict(dict(book.work)['original_publication_year'])['#text']}")
+        except (request.GoodreadsRequestException, KeyError):
+            continue
 
 
 if __name__ == "__main__":
