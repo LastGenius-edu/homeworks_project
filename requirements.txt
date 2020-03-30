@@ -1,0 +1,5 @@
+# https://pypi.org/project/Gutenberg/ - Installation instructions
+# https://pypi.org/project/Goodreads/ - Installation instructions
+
+goodreads
+gutenberg
