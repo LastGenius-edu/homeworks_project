@@ -1,6 +1,4 @@
-## Project name:
-
-English_Literature_Analysis_Project
+## Project name: English_Literature_Analysis_Project
 
 ## Description: 
 
