@@ -32,18 +32,27 @@ def main():
     # cache.populate()
     # print("\n\nFinished populating")
 
+    current_path = os.getcwd()
+
+    file = open(os.path.join(current_path, "output", "log.txt"), "a")
+
     # Getting the title of the first 3000 books on Project Gutenberg (EXTREMELY FAST)
-    for i in range(1, 3000):
+    for i in range(1, 10):
         title = list(get_metadata('title', i))
         if title:
-            print(title[0])
+            # prepare the string for the file name
+            filename = ''.join(e for e in title[0] if e.isalnum()) + ".txt"
+            text = strip_headers(load_etext(i)).strip()
+            with open(os.path.join(current_path, "output", filename), "w") as output_file:
+                output_file.write(text)
+            file.write(f"{title[0]} plaintext saved to '{title[0]}.txt'\n")
 
     # Getting the titles and publishing years for the first 3000 books on Goodreads
     # Pretty slow because Goodreads allows 1 request per second
-    for i in range(1, 3000):
+    for i in range(1, 20):
         try:
             book = gc.book(i)
-            print(f"{book.title} - published in {dict(dict(book.work)['original_publication_year'])['#text']}")
+            file.write(f"{book.title} - published in {dict(dict(book.work)['original_publication_year'])['#text']}\n")
         except (request.GoodreadsRequestException, KeyError):
             continue
 
