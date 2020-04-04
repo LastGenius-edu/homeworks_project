@@ -26,7 +26,7 @@ In order to ensure the quick response and search given the size and the number o
 
 ## Contributing: 
 
-I am the sole contributor of this repository, however, if you want to contribute in one way or another, open an issue or clone and install the project using abovementioned installation instructions, opening up the pull request once you are finished/
+I am the sole contributor of this repository, however, if you want to contribute in one way or another, open an issue or clone and install the project using abovementioned installation instructions, opening up the pull request once you are finished
 
 ## Credits: 
 
