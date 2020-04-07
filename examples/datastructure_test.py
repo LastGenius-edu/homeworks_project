@@ -37,25 +37,33 @@ def main():
 
     file = open(os.path.join(current_path, "output", "log.json"), "w")
 
+    gutenberg_titles = []
+
     # Getting the title of the first 3000 books on Project Gutenberg (EXTREMELY FAST)
     for i in range(1, 10):
         title = list(get_metadata('title', i))
         if title:
             # prepare the string for the file name
-            filename = ''.join(e for e in title[0] if e.isalnum()) + ".txt"
+            filename = ''.join(e for e in title[0] if e.isalnum() or e == ' ') + ".txt"
+            gutenberg_titles.append(filename[:-4])
             text = strip_headers(load_etext(i)).strip()
             with open(os.path.join(current_path, "output", filename), "w") as output_file:
                 output_file.write(text)
-            # file.write(f"{title[0]} plaintext saved to '{title[0]}.txt'\n")
     
     titles = dict()
     # Getting the titles and publishing years for the first 3000 books on Goodreads
     # Pretty slow because Goodreads allows 1 request per second
-    for i in range(1, 20):
+    for book_title in gutenberg_titles:
         try:
-            book = gc.book(i)
+            lst = gc.search_books(book_title, search_field='title')
+            
+            if not lst:
+                continue
+            else:
+                book = lst[0]
+
             titles[book.title] = (str(book.popular_shelves), str(book.similar_books), str(book.authors), dict(dict(book.work)['original_publication_year'])['#text'])
-        except (request.GoodreadsRequestException, KeyError):
+        except (request.GoodreadsRequestException, KeyError, TypeError):
             continue
     
     json.dump(titles, file, indent=4)
