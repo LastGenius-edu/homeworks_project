@@ -19,7 +19,7 @@ In order to ensure the quick response and search given the size and the number o
 
 [Домашнє Завдання №1 на Wiki](https://github.com/LastGenius-edu/homeworks_project/wiki/2.-Домашнє-завдання-№1)
 
-[Домашнє Завдання №1 на Wiki](https://github.com/LastGenius-edu/homeworks_project/wiki/3.-Домашнє-завдання-№2)
+[Домашнє Завдання №2 на Wiki](https://github.com/LastGenius-edu/homeworks_project/wiki/3.-Домашнє-завдання-№2)
 
 ## Installation: 
 
