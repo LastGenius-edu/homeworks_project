@@ -62,7 +62,7 @@ def main():
             else:
                 book = lst[0]
 
-            titles[book.title] = (str(book.popular_shelves), str(book.similar_books), str(book.authors), dict(dict(book.work)['original_publication_year'])['#text'])
+            titles[book.title] = (book_title+".txt", str(book.popular_shelves), str(book.similar_books), str(book.authors), dict(dict(book.work)['original_publication_year'])['#text'])
         except (request.GoodreadsRequestException, KeyError, TypeError):
             continue
     
