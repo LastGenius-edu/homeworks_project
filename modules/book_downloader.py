@@ -1,15 +1,22 @@
 # local file with API keys
 import keys
-import json
 
-# Goodreads API for book lists and details
-# Gutenberg API for plaintext books downloads
+# General imports
+import json
+import logging
 import os
-from goodreads import client, request
-from gutenberg.acquire import load_etext, get_metadata_cache
+import sys
+from goodreads import client, request # Goodreads API for book lists and details
+from gutenberg.acquire import load_etext, get_metadata_cache # Gutenberg API for plaintext books downloads
 # from gutenberg.acquire.metadata import SleepycatMetadataCache
 from gutenberg.cleanup import strip_headers
 from gutenberg.query import get_etexts, get_metadata
+from gutenberg._domain_model.exceptions import UnknownDownloadUriException
+
+
+# Setting up the logger
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 
 def populate_cache():
@@ -25,7 +32,7 @@ def populate_cache():
     print("\n\nFinished populating")
 
 
-def main():
+def main(number_books=35):
     """
     Main function of the test module
     """
@@ -39,21 +46,46 @@ def main():
 
     current_path = os.getcwd()
 
-    file = open(os.path.join(current_path, "output", "log.json"), "w")
+    try:
+        with open(os.path.join(current_path, "output", "read_list.json"), "r") as file:
+            read_list = json.load(file)
+    except FileNotFoundError:
+        read_list = []
 
     gutenberg_titles = []
     # Getting the title of the first 3000 books on Project Gutenberg (EXTREMELY FAST)
-    for i in range(1, 10):
+    for i in range(1, number_books):
         title = list(get_metadata('title', i))
+
         if title:
             # prepare the string for the file name
             filename = ''.join(e for e in title[0] if e.isalnum() or e == ' ') + ".txt"
-            gutenberg_titles.append(filename[:-4])
-            text = strip_headers(load_etext(i)).strip()
-            with open(os.path.join(current_path, "output", filename), "w") as output_file:
-                output_file.write(text)
 
-    titles = dict()
+            if filename[:-4] in read_list:
+                logger.info(f" File <{filename[:35]}...> already processed and downloaded")
+                continue
+            try:
+                text = strip_headers(load_etext(i)).strip()
+            except UnknownDownloadUriException:
+                continue
+
+            read_list.append(filename[:-4])
+            gutenberg_titles.append(filename[:-4])
+            with open(os.path.join(current_path, "output", "books", filename), "w") as output_file:
+                output_file.write(text)
+            logger.info(f" File <{filename[:35]}...> download finished")
+
+    with open(os.path.join(current_path, "output", "read_list.json"), "w") as file:
+        json.dump(read_list, file, indent=4)
+
+    logger.info(" Plaintext files download is finished")
+
+    try:
+        with open(os.path.join(current_path, "output", "log.json"), "r") as file:
+            titles = json.load(file)
+    except FileNotFoundError:
+        titles = dict()
+
     # Searching for the books on Goodreads, reading their metadata
     for book_title in gutenberg_titles:
         try:
@@ -64,6 +96,7 @@ def main():
             else:
                 book = lst[0]
 
+            logger.info(f" Found Goodreads metadata for <{book_title[:35]}...>")
             titles[book.title] = (book_title + ".txt", str(book.popular_shelves),
                                   str(book.similar_books), str(book.authors),
                                   dict(dict(book.work)['original_publication_year'])['#text'])
@@ -71,9 +104,14 @@ def main():
         except (request.GoodreadsRequestException, KeyError, TypeError):
             continue
 
-    json.dump(titles, file, indent=4)
-    file.close()
+    with open(os.path.join(current_path, "output", "log.json"), "w") as file:
+        json.dump(titles, file, indent=4)
+
+    logger.info("Metadata files download is finished")
 
 
 if __name__ == "__main__":
-    main()
+    if len(sys.argv) == 2:
+        main(int(sys.argv[1]))
+    else:
+        main()
