@@ -2,7 +2,6 @@
 import keys
 import json
 
-# overall imports
 # goodreads API for book lists and details
 # Gutenberg API for plaintext books downloads
 import os
@@ -11,6 +10,19 @@ from gutenberg.acquire import load_etext, get_metadata_cache
 # from gutenberg.acquire.metadata import SleepycatMetadataCache
 from gutenberg.cleanup import strip_headers
 from gutenberg.query import get_etexts, get_metadata
+
+
+def populate_cache():
+    """
+    Starting and populating Gutenberg cache for fast metadata queries.
+    WARNING - TAKES A LOT OF TIME!!!!!
+    (For me was around an hour)
+    NEEDS TO BE DONE ONLY ONCE!!!!!!!!
+    """
+    print("\n\nStarted populating")
+    cache = get_metadata_cache()
+    cache.populate()
+    print("\n\nFinished populating")
 
 
 def main():
@@ -24,14 +36,6 @@ def main():
 
     # creating a client for book search and information retrieval
     gc = client.GoodreadsClient(goodreads_key, goodreads_secret)
-
-    # Starting and populating Gutenberg cache for fast metadata queries.
-    # WARNING - TAKES A LOT OF TIME!!!!!!!!!!!!!!!!!!!! (For me was around an hour)
-    # NEEDS TO BE DONE ONLY ONCE!!!!!!!!
-    # print("\n\nStarted populating")
-    # cache = get_metadata_cache()
-    # cache.populate()
-    # print("\n\nFinished populating")
 
     current_path = os.getcwd()
 
@@ -51,8 +55,7 @@ def main():
                 output_file.write(text)
     
     titles = dict()
-    # Getting the titles and publishing years for the first 3000 books on Goodreads
-    # Pretty slow because Goodreads allows 1 request per second
+    # Searching for the books on Goodreads, reading their metadata
     for book_title in gutenberg_titles:
         try:
             lst = gc.search_books(book_title, search_field='title')
