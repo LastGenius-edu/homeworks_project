@@ -1,3 +1,8 @@
+#!/usr/bin/env python3
+'''
+Sultanov Andriy
+MIT License 2020
+'''
 # local file with API keys
 import keys
 
