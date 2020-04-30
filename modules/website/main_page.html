@@ -1,0 +1,284 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+
+        <style>
+        body {
+            background: #121212;
+            height: 200vh;
+            opacity: 1;
+        }
+
+        .title {
+            top: 2vh;
+            left: 3vw;
+            position: relative;
+            width: 90vw;
+            height: 30vh;
+            text-align: left;
+            color: #E1E1E1;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 15vh;
+            font-weight: 700;
+        }
+
+        .subtitlediv {
+            top: 35vh;
+            left: 3vw;
+            width: 80vw;
+            position: relative;
+        }
+
+        .subtitle {
+            position: relative;
+            width: 80vw;
+            height: 3vh;
+            text-align: left;
+            color: #E1E1E1;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 15vh;
+            font-weight: 700;
+        }
+
+        .category {
+            position: relative;
+            left: 2vw;
+            bottom: 1vw;
+            width: 30vw;
+            height: 3vh;
+            text-align: left;
+            color: #E1E1E1;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12vh;
+            font-weight: 700;
+        }
+
+        h2 {
+            position: relative;
+            text-align: center;
+            color: #BB86FC;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3vh;
+            font-weight: 700;
+        }
+
+        .tablecategories {
+            position:relative;
+            left: 3vw;
+            width: 92vw;
+            height: 80vh;
+            border-spacing: 0 2vh;
+            top: 55vh;
+        }
+
+        .tablerow {
+            background: #1D1D1D;
+            width: 90vw;
+            height: 19vh;
+            vertical-align: middle;
+        }
+
+        .tablecell {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .box {
+            background: #2D2D2D;
+            left: 2vh;
+            width: 15vh;
+            height: 15vh;
+            display: inline-block;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        img {
+            width: 12vh;
+            height: 12vh;
+            top: 3vh;
+            left: 47vw;
+            position: absolute;
+        }
+
+        .icon-scroll,
+        .icon-scroll:before {
+            position: absolute;
+            left: 60%;
+        }
+
+        .icon-scroll {
+            width: 8vh;
+            height: 14vh;
+            top: 45%;
+            margin-top: -35px;
+            box-shadow: inset 0 0 0 1px #E1E1E1;;
+            border-radius: 25px;
+        }
+
+        .icon-scroll:before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: #E1E1E1;
+            margin-left: -1.25vh;
+            top: 2vh;
+            border-radius: 4px;
+            animation-duration: 1.5s;
+            animation-iteration-count: infinite;
+            animation-name: scroll;
+        }
+
+        @keyframes scroll {
+            0% {
+                opacity: 1;
+                transform: translateY(0px);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(10vh);
+            }
+        }
+        </style>
+        <title>Sultanov Andriy Task 3</title>
+    </head>
+
+    <body>
+        <h1 class="title">Textual Analysis Data Visualization</h1>
+        <div class="subtitlediv">
+            <table>
+                <tr>
+                    <td>
+                        <h1 class="subtitle">Categories</h1>
+                    </td>
+                    <td>
+                        <div class='icon-scroll'></div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <table class="tablecategories">
+            <tr class="tablerow">
+                <td class="tablecell"> 
+                    <h1 class="category">Books</h1>
+                </td>
+                <td>
+                    <div class="box">
+                        <h2>Title</h2>
+                    </div>
+                </td>
+                <td>
+                    <div class="box">
+                        <h2>Title</h2>
+                    </div>
+                </td>
+                <td>
+                    <div class="box">
+                        <h2>Title</h2>
+                    </div>
+                </td>
+                <td>
+                    <div class="box">
+                        <h2>Title</h2>
+                    </div>
+                </td>
+                <td>
+                    <div class="box">
+                        <h2>Title</h2>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h1 class="category"1>Authors</h1>
+                </td>
+                <td>
+                    <div class="box">
+                        <h2>Title</h2>
+                    </div>
+                </td>
+                <td>
+                    <div class="box">
+                        <h2>Title</h2>
+                    </div>
+                </td>
+                <td>
+                    <div class="box">
+                        <h2>Title</h2>
+                    </div>
+                </td>
+                <td>
+                    <div class="box">
+                        <h2>Title</h2>
+                    </div>
+                </td>
+                <td>
+                    <div class="box">
+                        <h2>Title</h2>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h1 class="category">Times</h1>
+                </td>
+                <td>
+                    <div class="box">
+                        <h2>Title</h2>
+                    </div>
+                </td>
+                <td>
+                    <div class="box">
+                        <h2>Title</h2>
+                    </div>
+                </td>
+                <td>
+                    <div class="box">
+                        <h2>Title</h2>
+                    </div>
+                </td>
+                <td>
+                    <div class="box">
+                        <h2>Title</h2>
+                    </div>
+                </td>
+                <td>
+                    <div class="box">
+                        <h2>Title</h2>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h1 class="category">Topics</h1>
+                </td>
+                <td>
+                    <div class="box">
+                        <h2>Title</h2>
+                    </div>
+                </td>
+                <td>
+                    <div class="box">
+                        <h2>Title</h2>
+                    </div>
+                </td>
+                <td>
+                    <div class="box">
+                        <h2>Title</h2>
+                    </div>
+                </td>
+                <td>
+                    <div class="box">
+                        <h2>Title</h2>
+                    </div>
+                </td>
+                <td>
+                    <div class="box">
+                        <h2>Title</h2>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>
