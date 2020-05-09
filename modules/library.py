@@ -25,10 +25,16 @@ class Category:
         assert isinstance(book, Book), "Instance of Book class should be provided"
         self.books.append(book)
 
-    # def __str__(self):
-    #     return f"Category {self.name} contains these books: {str(self.books)}"
+    def __str__(self):
+        """
+        Returns a string representation of Category object
+        """
+        return f"Category {self.name} contains these books: {str(self.books)}"
 
     def __repr__(self):
+        """
+        Returns a shorter string representation of Category object
+        """
         return f"<Category {self.name}, size={len(self.books)}>"
 
 
@@ -66,6 +72,9 @@ class CategoryList:
         return False
 
     def __str__(self):
+        """
+        Returns a string representation of CategoryList container
+        """
         return f"CategoryList {self.name}: {', '.join(category.__repr__() for category in self.categories)}"
 
 
@@ -115,15 +124,17 @@ class Library:
         to class instances for easier manipulation and search.
         """
 
+        # If the book has already been added, don't do anything
         if title in self.general_book_list:
             return
 
+        # If author or year category don't exist, create them
+        # And remember for further easier linking
         if author not in self.authors_list:
             self.authors_list.add_category(author)
             print(f"Created author {author}")
         real_author = self.authors_list[author]
 
-        # If the Year category doesn't yet exist, create and remember him
         if year not in self.published_years:
             self.published_years.add_category(year)
             print(f"Created year {year}")

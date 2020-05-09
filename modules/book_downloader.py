@@ -123,23 +123,22 @@ def download(book_list, library):
 
     # Searching for the books on Goodreads, reading their metadata
     for book_title, book_author in gutenberg_titles.items():
-        # try:
-        lst = gc.search_books(book_title, search_field='title')
+        try:
+            lst = gc.search_books(book_title, search_field='title')
 
-        if not lst:
+            if not lst:
+                continue
+            else:
+                book = lst[0]
+
+            publication_year = dict(dict(book.work)['original_publication_year'])['#text']
+
+            logger.info(f" Found Goodreads metadata for <{book_title[:35]}...>")
+            titles[book.title] = (f"{book_title}.txt", book_author, publication_year)
+
+            library.add_book(book_title, f"{book_title}.txt", book_author, publication_year)
+        except (request.GoodreadsRequestException, KeyError, TypeError):
             continue
-        else:
-            book = lst[0]
-
-        publication_year = dict(dict(book.work)['original_publication_year'])['#text']
-
-        logger.info(f" Found Goodreads metadata for <{book_title[:35]}...>")
-        titles[book.title] = (f"{book_title}.txt", book_author, publication_year)
-
-        library.add_book(book_title, f"{book_title}.txt", book_author, publication_year)
-
-        # except (request.GoodreadsRequestException, KeyError, TypeError):
-        #     continue
 
     # Saving the acquired metadata in the file
     with open(os.path.join(current_path, "output", "log.json"), "w") as file:
@@ -149,4 +148,5 @@ def download(book_list, library):
 
 
 if __name__ == "__main__":
+    # Just a fake test for me, doesn't run cuz the module is imported usually
     download("Moby Dick")
