@@ -48,3 +48,23 @@ def cleanup_colors():
 
     with open("colors.json", "w") as file:
         json.dump(real_colors, file, indent=4)
+
+
+def reformat_colors():
+    """
+    Yet another temporary function to cleanup and combine
+    a few files with colors from excess colors
+    """
+    real_colors = dict()
+    with open("colors.json", "r") as file:
+        colors = json.load(file)
+
+        for color in colors:
+            real_colors[color["name"]] = color["value"]
+
+    with open("colors.json", "w") as file:
+        json.dump(real_colors, file, indent=4)
+
+
+if __name__ == '__main__':
+    reformat_colors()

@@ -61,7 +61,7 @@ def search(title_list=None, authors_list=None):
             for id_number in found_texts:
                 book_list.add(id_number)
 
-    return book_list
+    return list(book_list)
 
 
 def download(book_list, library):
@@ -105,7 +105,9 @@ def download(book_list, library):
 
             read_list.append(filename[:-4])
             gutenberg_titles[filename[:-4]] = list(get_metadata('author', book_number))[0]
-            with open(os.path.join(current_path, "output", "books", filename), "w") as output_file:
+
+            filepath = os.path.join(current_path, "output", "books", filename)
+            with open(filepath, "w", encoding="UTF-8", errors="ignore") as output_file:
                 output_file.write(text)
             logger.info(f" File <{filename[:35]}...> download finished")
 
