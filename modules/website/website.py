@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-'''
+"""
 Sultanov Andriy
 MIT License 2020
-'''
+"""
 import logging
 from flask import Flask, redirect, render_template, request, url_for
 
