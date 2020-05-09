@@ -109,7 +109,7 @@ class Library:
         self.authors_list = CategoryList("Authors")
         self.published_years = CategoryList("Years")
 
-    def add_book(self, title, filename, authors, year):
+    def add_book(self, title, filename, author, year):
         """
         Adds a book to the library, converting needed parameters
         to class instances for easier manipulation and search.
@@ -118,15 +118,10 @@ class Library:
         if title in self.general_book_list:
             return
 
-        # If the Author category doesn't yet exist, create and remember him
-        real_authors = []
-        for author_name in authors:
-
-            if author_name not in self.authors_list:
-                self.authors_list.add_category(author_name)
-                print(f"Created author {author_name}")
-
-            real_authors.append(self.authors_list[author_name])
+        if author not in self.authors_list:
+            self.authors_list.add_category(author)
+            print(f"Created author {author}")
+        real_author = self.authors_list[author]
 
         # If the Year category doesn't yet exist, create and remember him
         if year not in self.published_years:
@@ -135,13 +130,13 @@ class Library:
         real_year = self.published_years[year]
 
         # Create a Book instance with pre-processed parameters
-        book = Book(title, filename, real_authors, real_year)
-        print(f"Created book {book}")
+        book = Book(title, filename, real_author, real_year)
 
         # Adding the reference to this book to authors and published years categories
-        for real_author in real_authors:
-            real_author.add_book(book)
+        self.authors_list[author].add_book(book)
         self.published_years[year].add_book(book)
+
+        print(f"Created book {book}")
 
         # Add the book to the general bookshelf
         self.general_book_list.append(book)
