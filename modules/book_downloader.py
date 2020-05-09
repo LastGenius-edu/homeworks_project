@@ -10,7 +10,6 @@ import keys
 import json
 import logging
 import os
-import sys
 import gutenberg_cleaner as cleaner
 from goodreads import client, request # Goodreads API for book lists and details
 from gutenberg.acquire import load_etext, get_metadata_cache # Gutenberg API for plaintext books downloads
@@ -25,7 +24,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-def populate_cache():
+def __populate_cache():
     """
     Starting and populating Gutenberg cache for fast metadata queries.
     WARNING - TAKES A LOT OF TIME!!!!!
@@ -65,15 +64,16 @@ def download(book_list):
     Downloads and cleans up books from the List of Gutenberg IDs.
     """
 
-    # setting up the API keys from local keys.py file
+    # Setting up the API keys from local keys.py file
     goodreads_key = os.environ['GOODREADS_KEY']
     goodreads_secret = os.environ['GOODREADS_SECRET']
 
-    # creating a client for book search and information retrieval
+    # Creating a client for book search and information retrieval
     gc = client.GoodreadsClient(goodreads_key, goodreads_secret)
 
     current_path = os.getcwd()
 
+    # Reading a list of previously downloaded texts in order to optimize downloads
     try:
         with open(os.path.join(current_path, "output", "read_list.json"), "r") as file:
             read_list = json.load(file)
@@ -81,7 +81,7 @@ def download(book_list):
         read_list = []
 
     gutenberg_titles = []
-    # Getting the title of the first 3000 books on Project Gutenberg (EXTREMELY FAST)
+    # Downloading book by book from the list
     for book_number in book_list:
         title = list(get_metadata('title', book_number))
 
@@ -109,10 +109,11 @@ def download(book_list):
 
     logger.info(" Plaintext files download is finished")
 
+    # Reading the log file with acquired metadata
     try:
         with open(os.path.join(current_path, "output", "log.json"), "r") as file:
             titles = json.load(file)
-    except FileNotFoundError:
+    except (FileNotFoundError, JSONDecodeError):
         titles = dict()
 
     # Searching for the books on Goodreads, reading their metadata
@@ -126,13 +127,13 @@ def download(book_list):
                 book = lst[0]
 
             logger.info(f" Found Goodreads metadata for <{book_title[:35]}...>")
-            titles[book.title] = (book_title + ".txt", str(book.popular_shelves),
-                                  str(book.similar_books), str(book.authors),
+            titles[book.title] = (book_title + ".txt", str(book.authors),
                                   dict(dict(book.work)['original_publication_year'])['#text'])
 
         except (request.GoodreadsRequestException, KeyError, TypeError):
             continue
 
+    # Saving the acquired metadata in the file
     with open(os.path.join(current_path, "output", "log.json"), "w") as file:
         json.dump(titles, file, indent=4)
 
