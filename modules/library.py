@@ -25,8 +25,8 @@ class Category:
         assert isinstance(book, Book), "Instance of Book class should be provided"
         self.books.append(book)
 
-    def __str__(self):
-        return f"Category {self.name} contains these books: {str(self.books)}"
+    # def __str__(self):
+    #     return f"Category {self.name} contains these books: {str(self.books)}"
 
     def __repr__(self):
         return f"<Category {self.name}, size={len(self.books)}>"
@@ -50,7 +50,7 @@ class CategoryList:
         self.categories.append(Category(name))
 
     def __getitem__(self, item):
-        assert item in self, "Can only get existing categories"
+        assert self.__contains__(item), "Can only get existing categories"
 
         for category in self.categories:
             if category.name == item:
@@ -66,7 +66,7 @@ class CategoryList:
         return False
 
     def __str__(self):
-        return f"CategoryList {self.name}: {str(self.categories)}"
+        return f"CategoryList {self.name}: {', '.join(category.__repr__() for category in self.categories)}"
 
 
 class Book:
@@ -115,22 +115,28 @@ class Library:
         to class instances for easier manipulation and search.
         """
 
+        if title in self.general_book_list:
+            return
+
         # If the Author category doesn't yet exist, create and remember him
         real_authors = []
         for author_name in authors:
 
             if author_name not in self.authors_list:
                 self.authors_list.add_category(author_name)
+                print(f"Created author {author_name}")
 
             real_authors.append(self.authors_list[author_name])
 
         # If the Year category doesn't yet exist, create and remember him
         if year not in self.published_years:
-            self.published_years.add_category(Category(year))
+            self.published_years.add_category(year)
+            print(f"Created year {year}")
         real_year = self.published_years[year]
 
         # Create a Book instance with pre-processed parameters
         book = Book(title, filename, real_authors, real_year)
+        print(f"Created book {book}")
 
         # Adding the reference to this book to authors and published years categories
         for real_author in real_authors:

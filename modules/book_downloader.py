@@ -37,29 +37,34 @@ def __populate_cache():
     print("\n\nFinished populating")
 
 
-def searcher(title_list, authors_list):
+def search(title_list=None, authors_list=None):
     """
     Receives two lists of books to download.
     Searches for their availability on Gutenberg and returns list of gutenberg IDs.
     """
+    if title_list is None:
+        title_list = []
+    if authors_list is None:
+        authors_list = []
+
     book_list = set()
 
-    print(list_supported_metadatas())
-
     for title in title_list:
-        found_texts = get_etexts("title", title)
+        found_texts = list(get_etexts("title", title))
         if found_texts:
-            book_list.add(found_texts[0])
+            for id_number in found_texts:
+                book_list.add(id_number)
 
     for author in authors_list:
-        found_texts = get_etexts("author", author)
+        found_texts = list(get_etexts("author", author))
         if found_texts:
-            book_list.add(found_texts[0])
+            for id_number in found_texts:
+                book_list.add(id_number)
 
     return book_list
 
 
-def download(book_list):
+def download(book_list, library):
     """
     Downloads and cleans up books from the List of Gutenberg IDs.
     """
@@ -80,7 +85,7 @@ def download(book_list):
     except (FileNotFoundError, JSONDecodeError):
         read_list = []
 
-    gutenberg_titles = []
+    gutenberg_titles = dict()
     # Downloading book by book from the list
     for book_number in book_list:
         title = list(get_metadata('title', book_number))
@@ -99,7 +104,7 @@ def download(book_list):
                 continue
 
             read_list.append(filename[:-4])
-            gutenberg_titles.append(filename[:-4])
+            gutenberg_titles[filename[:-4]] = list(get_metadata('author', book_number))[0]
             with open(os.path.join(current_path, "output", "books", filename), "w") as output_file:
                 output_file.write(text)
             logger.info(f" File <{filename[:35]}...> download finished")
@@ -117,21 +122,24 @@ def download(book_list):
         titles = dict()
 
     # Searching for the books on Goodreads, reading their metadata
-    for book_title in gutenberg_titles:
-        try:
-            lst = gc.search_books(book_title, search_field='title')
+    for book_title, book_author in gutenberg_titles.items():
+        # try:
+        lst = gc.search_books(book_title, search_field='title')
 
-            if not lst:
-                continue
-            else:
-                book = lst[0]
-
-            logger.info(f" Found Goodreads metadata for <{book_title[:35]}...>")
-            titles[book.title] = (book_title + ".txt", str(book.authors),
-                                  dict(dict(book.work)['original_publication_year'])['#text'])
-
-        except (request.GoodreadsRequestException, KeyError, TypeError):
+        if not lst:
             continue
+        else:
+            book = lst[0]
+
+        publication_year = dict(dict(book.work)['original_publication_year'])['#text']
+
+        logger.info(f" Found Goodreads metadata for <{book_title[:35]}...>")
+        titles[book.title] = (f"{book_title}.txt", book_author, publication_year)
+
+        library.add_book(book_title, f"{book_title}.txt", book_author, publication_year)
+
+        # except (request.GoodreadsRequestException, KeyError, TypeError):
+        #     continue
 
     # Saving the acquired metadata in the file
     with open(os.path.join(current_path, "output", "log.json"), "w") as file:
