@@ -11,12 +11,13 @@ import json
 import logging
 import os
 import sys
+import gutenberg_cleaner as cleaner
 from goodreads import client, request # Goodreads API for book lists and details
 from gutenberg.acquire import load_etext, get_metadata_cache # Gutenberg API for plaintext books downloads
-# from gutenberg.acquire.metadata import SleepycatMetadataCache
 from gutenberg.cleanup import strip_headers
-from gutenberg.query import get_etexts, get_metadata
+from gutenberg.query import get_etexts, get_metadata, list_supported_metadatas
 from gutenberg._domain_model.exceptions import UnknownDownloadUriException
+from json.decoder import JSONDecodeError
 
 
 # Setting up the logger
@@ -37,9 +38,31 @@ def populate_cache():
     print("\n\nFinished populating")
 
 
-def main(number_books=35):
+def searcher(title_list, authors_list):
     """
-    Main function of the test module
+    Receives two lists of books to download.
+    Searches for their availability on Gutenberg and returns list of gutenberg IDs.
+    """
+    book_list = set()
+
+    print(list_supported_metadatas())
+
+    for title in title_list:
+        found_texts = get_etexts("title", title)
+        if found_texts:
+            book_list.add(found_texts[0])
+
+    for author in authors_list:
+        found_texts = get_etexts("author", author)
+        if found_texts:
+            book_list.add(found_texts[0])
+
+    return book_list
+
+
+def download(book_list):
+    """
+    Downloads and cleans up books from the List of Gutenberg IDs.
     """
 
     # setting up the API keys from local keys.py file
@@ -54,13 +77,13 @@ def main(number_books=35):
     try:
         with open(os.path.join(current_path, "output", "read_list.json"), "r") as file:
             read_list = json.load(file)
-    except FileNotFoundError:
+    except (FileNotFoundError, JSONDecodeError):
         read_list = []
 
     gutenberg_titles = []
     # Getting the title of the first 3000 books on Project Gutenberg (EXTREMELY FAST)
-    for i in range(1, number_books):
-        title = list(get_metadata('title', i))
+    for book_number in book_list:
+        title = list(get_metadata('title', book_number))
 
         if title:
             # prepare the string for the file name
@@ -70,7 +93,8 @@ def main(number_books=35):
                 logger.info(f" File <{filename[:35]}...> already processed and downloaded")
                 continue
             try:
-                text = strip_headers(load_etext(i)).strip()
+                text = strip_headers(load_etext(book_number)).strip()
+                text = cleaner.simple_cleaner(text)
             except UnknownDownloadUriException:
                 continue
 
@@ -116,7 +140,4 @@ def main(number_books=35):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) == 2:
-        main(int(sys.argv[1]))
-    else:
-        main()
+    download("Moby Dick")
