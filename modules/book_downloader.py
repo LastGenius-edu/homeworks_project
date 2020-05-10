@@ -136,7 +136,7 @@ def download(book_list, library):
             publication_year = dict(dict(book.work)['original_publication_year'])['#text']
 
             logger.info(f" Found Goodreads metadata for <{book_title[:35]}...>")
-            titles[book.title] = (f"{book_title}.txt", book_author, publication_year)
+            titles[book_title] = (f"{book_title}.txt", book_author, publication_year)
 
             library.add_book(book_title, f"{book_title}.txt", book_author, publication_year)
         except (request.GoodreadsRequestException, KeyError, TypeError):
