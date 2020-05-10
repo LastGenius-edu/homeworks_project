@@ -11,13 +11,12 @@ from nltk.tokenize import word_tokenize
 
 import os
 import re
-import matplotlib.pyplot as plt
 import multidict as multidict
-import numpy as np
 from wordcloud import WordCloud
 from PIL import Image
 
 
+# Home folder for further use
 HOME = os.getcwd()
 
 
@@ -26,10 +25,11 @@ def wordcloud_analyzer(text, filename):
     Creates a wordcloud based on frequency of words
     Saves into a jpg image
     """
+
+    # Making dict for counting frequencies
     fullTermsDict = multidict.MultiDict()
     tmpDict = {}
 
-    # making dict for counting frequencies
     for word in text.split(" "):
         if re.match(r"a|the|an|the|to|in|for|of|or|by|with|is|on|that|be", word) or len(word) < 3:
             continue
@@ -38,14 +38,17 @@ def wordcloud_analyzer(text, filename):
     for key in tmpDict:
         fullTermsDict.add(key, tmpDict[key])
 
+    # Path for the font for the image
     font_path = os.path.join(HOME, "output", "wordclouds", "Montserrat-Bold.ttf")
 
+    # Generating a WordCloud from the previously  made frequency dict
     wc = WordCloud(font_path=font_path, background_color="#1D1D1D",
                    max_words=1000, max_font_size=135, width=1080, height=1080)
     wc.generate_from_frequencies(fullTermsDict)
 
+    # Save the image
     image = wc.to_image()
-    # image.show() 
+    # image.show()
     image.save(os.path.join(HOME, "output", "wordclouds", filename))
 
 
