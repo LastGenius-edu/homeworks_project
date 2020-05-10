@@ -27,6 +27,10 @@ In order to ensure the quick response and search given the size and the number o
 
 [Домашнє Завдання №2 на Wiki](https://github.com/LastGenius-edu/homeworks_project/wiki/3.-Домашнє-завдання-№2)
 
+[Домашнє Завдання №3 на Wiki](https://github.com/LastGenius-edu/homeworks_project/wiki/4.-Домашнє-завдання-№3)
+
+[Домашнє Завдання №4 на Wiki](https://github.com/LastGenius-edu/homeworks_project/wiki/5.-Домашнє-завдання-№4)
+
 ## Installation: 
 
 ## Usage: 
