@@ -1,3 +1,7 @@
+![](https://img.shields.io/github/license/LastGenius-edu/homeworks_project)
+![](https://img.shields.io/github/commit-activity/w/LastGenius-edu/homeworks_project)
+![](https://img.shields.io/github/last-commit/LastGenius-edu/homeworks_project)
+![](https://img.shields.io/github/languages/code-size/LastGenius-edu/homeworks_project)
 ## Project name: English_Literature_Analysis_Project
 
 [Preview](http://lastgenius.pythonanywhere.com)
