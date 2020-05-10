@@ -79,11 +79,9 @@ def main():
     download(book_list, library)
 
     for book in library.general_book_list:
-        filename = os.path.join(HOME, "output", "books", book.filename)
-        with open(filename, "r", encoding="UTF-8", errors="ignore") as file:
-            text = file.read()
-            color_analyzer(text, book.title + ".html")
-            wordcloud_analyzer(text, book.title + ".jpg")
+        text = book.get_text()
+        color_analyzer(text, book.title + ".html")
+        wordcloud_analyzer(text, book.title + ".jpg")
 
 
 if __name__ == '__main__':

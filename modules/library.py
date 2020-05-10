@@ -3,6 +3,7 @@
 Sultanov Andriy
 MIT License 2020
 """
+import os
 
 
 class Category:
@@ -95,6 +96,16 @@ class Book:
         self.filename = filename
         self.authors = authors
         self.year = year
+
+    def get_text(self):
+        """
+        Reads the file and returns plaintext in a string
+        """
+        cur_path = os.getcwd()
+        filename = os.path.join(cur_path, "output", "books", self.filename)
+        with open(filename, "r", errors="ignore", encoding="UTF-8") as file:
+            text = file.read()
+        return text
 
     def __str__(self):
         """
