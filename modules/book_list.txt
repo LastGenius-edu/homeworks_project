@@ -98,104 +98,204 @@ THE SHELTERING SKY
 THE POSTMAN ALWAYS RINGS TWICE
 THE GINGER MAN
 THE MAGNIFICENT AMBERSONS
-The Pilgrim’s Progress by John Bunyan
-Robinson Crusoe by Daniel Defoe
-Gulliver’s Travels by Jonathan Swift
-Clarissa by Samuel Richardson
-Tom Jones by Henry Fielding
-The Life and Opinions of Tristram Shandy, Gentleman by Laurence Sterne
-Emma by Jane Austen
-Frankenstein by Mary Shelley
-Nightmare Abbey by Thomas Love Peacock
-The Narrative of Arthur Gordon Pym of Nantucket by Edgar Allan Poe
-Sybil by Benjamin Disraeli
-Jane Eyre by Charlotte Brontë
+The Pilgrim’s Progress
+Robinson Crusoe
+Gulliver’s Travels
+Clarissa
+Tom Jones
+The Life and Opinions of Tristram Shandy, Gentleman
+Emma
+Frankenstein
+Nightmare Abbey
+The Narrative of Arthur Gordon Pym of Nantucket
+Sybil
+Jane Eyre
 Its great breakthrough was its intimate dialogue with the reader.
-Wuthering Heights by Emily Brontë
-Vanity Fair by William Thackeray
-David Copperfield by Charles Dickens
-The Scarlet Letter by Nathaniel Hawthorne
-Moby-Dick by Herman Melville
-Alice’s Adventures in Wonderland by Lewis Carroll
-The Moonstone by Wilkie Collins
-Little Women by Louisa May Alcott (1868-9)
-Middlemarch by George Eliot (1871-2)
-The Way We Live Now by Anthony Trollope
-The Adventures of Huckleberry Finn by Mark Twain (1884/5)
-Kidnapped by Robert Louis Stevenson
-Three Men in a Boat by Jerome K Jerome
-The Sign of Four by Arthur Conan Doyle
-The Picture of Dorian Gray by Oscar Wilde
-New Grub Street by George Gissing
-Jude the Obscure by Thomas Hardy
-The Red Badge of Courage by Stephen Crane
-Dracula by Bram Stoker
-Heart of Darkness by Joseph Conrad
-Sister Carrie by Theodore Dreiser
-Kim by Rudyard Kipling
-The Call of the Wild by Jack London
-The Golden Bowl by Henry James
-Hadrian the Seventh by Frederick Rolfe
-The Wind in the Willows by Kenneth Grahame
-The History of Mr Polly by HG Wells
-Zuleika Dobson by Max Beerbohm
-The Good Soldier by Ford Madox Ford
-The Thirty-Nine Steps by John Buchan
-The Rainbow by DH Lawrence
-Of Human Bondage by W Somerset Maugham
-The Age of Innocence by Edith Wharton
-Ulysses by James Joyce
-Babbitt by Sinclair Lewis
-A Passage to India by EM Forster
-Gentlemen Prefer Blondes by Anita Loos
-Mrs Dalloway by Virginia Woolf
-The Great Gatsby by F Scott Fitzgerald
-Lolly Willowes by Sylvia Townsend Warner
-The Sun Also Rises by Ernest Hemingway
-The Maltese Falcon by Dashiell Hammett
-As I Lay Dying by William Faulkner
-Brave New World by Aldous Huxley
-Cold Comfort Farm by Stella Gibbons
-Nineteen Nineteen by John Dos Passos
-Tropic of Cancer by Henry Miller
-Scoop by Evelyn Waugh
-Murphy by Samuel Beckett
-The Big Sleep by Raymond Chandler
-Party Going by Henry Green
-At Swim-Two-Birds by Flann O’Brien
-The Grapes of Wrath by John Steinbeck
-Joy in the Morning by PG Wodehouse
-All the King’s Men by Robert Penn Warren
-Under the Volcano by Malcolm Lowry
-The Heat of the Day by Elizabeth Bowen
-Nineteen Eighty-Four by George Orwell
-The End of the Affair by Graham Greene
-The Catcher in the Rye by JD Salinger
-The Adventures of Augie March by Saul Bellow
-Lord of the Flies by William Golding
-Lolita by Vladimir Nabokov
-On the Road by Jack Kerouac
-Voss by Patrick White
-To Kill a Mockingbird by Harper Lee
-The Prime of Miss Jean Brodie by Muriel Spark
-Catch-22 by Joseph Heller
-The Golden Notebook by Doris Lessing
-A Clockwork Orange by Anthony Burgess
-A Single Man by Christopher Isherwood
-In Cold Blood by Truman Capote
-The Bell Jar by Sylvia Plath
-Portnoy’s Complaint by Philip Roth
-Mrs Palfrey at the Claremont by Elizabeth Taylor
-Rabbit Redux by John Updike
-Song of Solomon by Toni Morrison
-A Bend in the River by VS Naipaul
-Midnight’s Children by Salman Rushdie
-Housekeeping by Marilynne Robinson
-Money: A Suicide Note by Martin Amis
-An Artist of the Floating World by Kazuo Ishiguro
-The Beginning of Spring by Penelope Fitzgerald
-Breathing Lessons by Anne Tyler
-Amongst Women by John McGahern
-Underworld by Don DeLillo
-Disgrace by JM Coetzee
-True History of the Kelly Gang by Peter Carey
+Wuthering Heights
+Vanity Fair
+David Copperfield
+The Scarlet Letter
+Moby-Dick
+Alice’s Adventures in Wonderland
+The Moonstone
+Little Women
+Middlemarch
+The Way We Live Now
+The Adventures of Huckleberry Finn
+Kidnapped
+Three Men in a Boat
+The Sign of Four
+The Picture of Dorian Gray
+New Grub Street
+Jude the Obscure
+The Red Badge of Courage
+Dracula
+Heart of Darkness
+Sister Carrie
+Kim
+The Call of the Wild
+The Golden Bowl
+Hadrian the Seventh
+The Wind in the Willows
+The History of Mr Polly
+Zuleika Dobson
+The Good Soldier
+The Thirty-Nine Steps
+The Rainbow
+Of Human Bondage
+The Age of Innocence
+Ulysses
+Babbitt
+A Passage to India
+Gentlemen Prefer Blondes
+Mrs Dalloway
+The Great Gat
+Lolly Willowes
+The Sun Also Rises
+The Maltese Falcon
+As I Lay Dying
+Brave New World
+Cold Comfort Farm
+Nineteen Nineteen
+Tropic of Cancer
+Scoop
+Murphy
+The Big Sleep
+Party Going
+At Swim-Two-Birds
+The Grapes of Wrath
+Joy in the Morning
+All the King’s Men
+Under the Volcano
+The Heat of the Day
+Nineteen Eighty-Four
+The End of the Affair
+The Catcher in the Rye
+The Adventures of Augie March
+Lord of the Flies
+Lolita
+On the Road
+Voss
+To Kill a Mockingbird
+The Prime of Miss Jean Brodie
+Catch-22
+The Golden Notebook
+A Clockwork Orange
+A Single Man
+In Cold Blood
+The Bell Jar
+Portnoy’s Complaint
+Mrs Palfrey at the Claremont
+Rabbit Redux
+Song of Solomon
+A Bend in the River
+Midnight’s Children
+Housekeeping
+Money: A Suicide Note
+An Artist of the Floating World
+The Beginning of Spring
+Breathing Lessons
+Amongst Women
+Underworld
+Disgrace
+True History of the Kelly Gang
+Pride and Prejudice
+The Works of Edgar Allan Poe, The Raven Edition
+Alice's Adventures in Wonderland
+Frankenstein; Or, The Modern Prometheus
+The Importance of Being Earnest: A Trivial Comedy for Serious People
+A Journal of the Plague Year
+Et dukkehjem. English
+The Yellow Wallpaper
+A Modest Proposal
+A Tale of Two Cities
+The Call of the Wild
+Ion
+The Strange Case of Dr. Jekyll and Mr. Hyde
+Treasure Island
+Moby Dick; Or, The Whale
+The Adventures of Tom Sawyer
+The Adventures of Sherlock Holmes
+Anthem
+Adventures of Huckleberry Finn
+Little Women
+The Roman Index of Forbidden Books
+Metamorphosis
+The Picture of Dorian Gray
+Walden, and On The Duty Of Civil Disobedience
+Dracula
+Great Expectations
+Grimms' Fairy Tales
+The Hound of the Baskervilles
+Peter Pan
+A Christmas Carol in Prose; Being a Ghost Story of Christmas
+Jane Eyre: An Autobiography
+War and Peace
+Index of Project Gutenberg Works on Black History
+Emma
+The Secret Garden
+Ulysses
+Heart of Darkness
+The Wonderful Wizard of Oz
+Il Principe. English
+The Scarlet Letter
+The Awakening, and Selected Short Stories
+Anne of Green Gables
+Beowulf: An Anglo-Saxon Epic Poem
+Dubliners
+Le jardin des supplices
+The Count of Monte Cristo, Illustrated
+The Decameron of Giovanni Boccaccio
+David Copperfield
+Frankenstein; Or, The Modern Prometheus
+Siddhartha
+Tractatus Logico-Philosophicus
+Pygmalion
+Wuthering Heights
+The Souls of Black Folk
+The War of the Worlds
+Uncle Tom's Cabin
+The Memoirs, Correspondence, and Miscellanies, From the Papers of Thomas Jefferson
+The Brothers Karamazov
+Prestuplenie i nakazanie. English
+The Republic
+The Kama Sutra of Vatsyayana
+Also sprach Zarathustra. English
+A Study in Scarlet
+The Jungle Book
+The Masque of the Red Death
+Leviathan
+Les Misérables
+The Prophet
+The Odyssey
+Essays of Michel de Montaigne — Complete
+The Mysterious Affair at Styles
+Oliver Twist
+The Time Machine
+The Sign of the Four
+Narrative of the Life of Frederick Douglass, an American Slave
+Don Quixote
+The Tale of Peter Rabbit
+The Jungle
+The Iliad
+Beyond Good and Evil
+The Life and Adventures of Robinson Crusoe
+Anna Karenina
+Meditations
+The Wonderful Wizard of Oz
+Leaves of Grass
+The Slang Dictionary: Etymological, Historical and Andecdotal
+A History of Epidemics in Britain, Volume 1 (of 2)
+An Index of The Divine Comedy
+The Complete Works of William Shakespeare
+Sense and Sensibility
+Common Sense
+Baron Trump's Marvellous Underground Journey
+Candide
+Gulliver's Travels into Several Remote Nations of the World
+The Happy Prince, and Other Tales
+On the origin of species
+The Confessions of St. Augustine
+Second Treatise of Government
+The Turn of the Screw
+Songs of Innocence, and Songs of Experience

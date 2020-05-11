@@ -1,66 +1,100 @@
-William Shakespeare
-Agatha Christie
-Barbara Cartland
-Danielle Steel
-Harold Robbins
-Enid Blyton
-Sidney Sheldon
-J. K. Rowling
-Gilbert Patten
-Dr. Seuss
-Jackie Collins
-Horatio Alger
-R. L. Stine
-Dean Koontz
-Nora Roberts
-Stephen King
-Jeffrey Archer
-Louis L'Amour
-Erle Stanley Gardner
-Edgar Wallace
-Janet Dailey
-Robert Ludlum
-James Patterson
-Roald Dahl
-John Grisham
-Zane Grey
-Irving Wallace
-J. R. R. Tolkien
-Carter Brown
-Mickey Spillane
-C. S. Lewis
-Dan Brown
-Ann M. Martin
-Arthur Hailey
-Beatrix Potter
-Michael Crichton
-Richard Scarry
-Clive Cussler
-Alistair MacLean
-Ken Follett
-Debbie Macomber
-EL James
-Catherine Cookson
-Norman Bridwell
-David Baldacci
-Nicholas Sparks
-Evan Hunter
-Andrew Neiderman
-Roger Hargreaves
-Anne Rice
-Robin Cook
-Wilbur Smith
-Erskine Caldwell
-Judith Krantz
-Eleanor Hibbert
-Lewis Carroll
-Denise Robins
-Ian Fleming
-Rex Stout
-Frank G. Slaughter
-Edgar Rice Burroughs
-John Creasey
-James A. Michener
-Mary Higgins Clark
-Penny Jordan
-Patricia Cornwell
+Dickens, Charles
+Austen, Jane
+Twain, Mark
+Poe, Edgar Allan
+Doyle, Arthur Conan
+Wilde, Oscar
+Stevenson, Robert Louis
+Carroll, Lewis
+Shelley, Mary Wollstonecraft
+Plato
+Shakespeare, William
+Jowett, Benjamin
+Defoe, Daniel
+London, Jack
+Widger, David
+Wells, H. G. (Herbert George)
+Dostoyevsky, Fyodor
+Ibsen, Henrik
+Swift, Jonathan
+Tolstoy, Leo, graf
+Nietzsche, Friedrich Wilhelm
+Alcott, Louisa May
+Baum, L. Frank (Lyman Frank)
+Gilman, Charlotte Perkins
+Melville, Herman
+Kipling, Rudyard
+Joyce, James
+Montgomery, L. M. (Lucy Maud)
+Hawthorne, Nathaniel
+Garnett, Constance
+Dumas, Alexandre
+Conrad, Joseph
+Homer
+Kafka, Franz
+Burnett, Frances Hodgson
+Dante Alighieri
+Verne, Jules
+Doré, Gustave
+Thoreau, Henry David
+Rhead, Louis
+Rand, Ayn
+Grimm, Jacob
+Grimm, Wilhelm
+Russell, Bertrand
+James, Henry
+Wyllie, David
+Kemble, E. W. (Edward Windsor)
+Hugo, Victor
+Chekhov, Anton Pavlovich
+Chesterton, G. K. (Gilbert Keith)
+Shaw, Bernard
+Barrie, J. M. (James Matthew)
+Lang, Andrew
+Christie, Agatha
+Stoker, Bram
+Cervantes Saavedra, Miguel de
+Betten, Francis S. (Francis Sales)
+Maude, Louise
+Maude, Aylmer
+Brontë, Charlotte
+Leech, John
+Potter, Beatrix
+Wilder, Marshall Pinckney
+Balzac, Honoré de
+Maupassant, Guy de
+Morley, Henry
+Townsend, F. H. (Frederick Henry)
+Bierce, Ambrose
+Burton, Richard Francis, Sir
+Goethe, Johann Wolfgang von
+Machiavelli, Niccolò
+Wharton, Edith
+Wodehouse, P. G. (Pelham Grenville)
+Darwin, Charles
+Boccaccio, Giovanni
+Hardy, Thomas
+Hesse, Hermann
+Scott, Walter
+Cary, Henry Francis
+Rizal, José
+Pope, Alexander
+Butler, Samuel
+Stowe, Harriet Beecher
+Voltaire
+Du Bois, W. E. B. (William Edward Burghardt)
+Hapgood, Isabel Florence
+Chopin, Kate
+Burroughs, Edgar Rice
+Foote, Mary Hallock
+Marriott, W. K. (William Kenaz)
+Eliot, George
+Anthony, A. V. S. (Andrew Varick Stout)
+Ipsen, Ludvig Sandöe
+Hall, J. Lesslie (John Lesslie)
+Mirbeau, Octave
+Ormsby, John
+Nesbit, E. (Edith)
+Warner, Charles Dudley
+Mabie, Hamilton Wright
+Payne, John

@@ -58,6 +58,7 @@ def search(title_list=None, authors_list=None):
     for author in authors_list:
         found_texts = list(get_etexts("author", author))
         if found_texts:
+            print(f"Found {author}")
             for id_number in found_texts:
                 book_list.add(id_number)
 

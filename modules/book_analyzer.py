@@ -8,11 +8,21 @@ from library import Library
 
 
 def main():
+    book_list = []
+    author_list = []
+
+    with open("book_list.txt", "r") as file:
+        for line in file.readlines():
+            book_list.append(line.replace("\n", "").capitalize())
+
+    with open("author_list.txt", "r") as file:
+        for line in file.readlines():
+            author_list.append(line.replace("\n", ""))
+
     library = Library()
-    books = ["Macbeth"]
-    book_list = search(books) + [2701]
-    print(book_list)
-    download(book_list, library)
+    books = search(book_list, author_list) + [2701]
+    print(books)
+    download(books, library)
 
 
 if __name__ == '__main__':
