@@ -4,6 +4,12 @@ Sultanov Andriy
 MIT License 2020
 """
 import os
+import re
+import json
+import multidict as multidict
+from wordcloud import WordCloud
+from PIL import Image
+from nltk.tokenize import word_tokenize
 
 
 class Category:
@@ -25,6 +31,9 @@ class Category:
         """
         assert isinstance(book, Book), "Instance of Book class should be provided"
         self.books.append(book)
+
+    def generate_webpage(self):
+        pass
 
     def __str__(self):
         """
@@ -55,6 +64,9 @@ class CategoryList:
         Adds the author to the list
         """
         self.categories.append(Category(name))
+
+    def generate_webpage(self):
+        pass
 
     def __getitem__(self, item):
         assert self.__contains__(item), "Can only get existing categories"
@@ -97,6 +109,11 @@ class Book:
         self.authors = authors
         self.year = year
 
+        text = self.get_text()
+        self.generate_wordcloud(text)
+        self.generate_colorwords(text)
+        self.generate_webpage()
+
     def get_text(self):
         """
         Reads the file and returns plaintext in a string
@@ -106,6 +123,62 @@ class Book:
         with open(filename, "r", errors="ignore", encoding="UTF-8") as file:
             text = file.read()
         return text
+
+    def generate_wordcloud(self, text):
+        """
+        Creates a wordcloud based on frequency of words
+        Saves into a jpg image
+        """
+        home = os.getcwd()
+        # Making dict for counting frequencies
+        full_terms_dict = multidict.MultiDict()
+        tmp_dict = {}
+
+        for word in text.split(" "):
+            if re.match(r"a|the|an|the|to|in|for|of|or|by|with|is|on|that|be", word) or len(word) < 4:
+                continue
+            val = tmp_dict.get(word, 0)
+            tmp_dict[word.lower()] = val + 1
+        for key in tmp_dict:
+            full_terms_dict.add(key, tmp_dict[key])
+
+        # Path for the font for the image
+        font_path = os.path.join(home, "output", "wordclouds", "Montserrat-Bold.ttf")
+
+        # Generating a WordCloud from the previously  made frequency dict
+        wc = WordCloud(font_path=font_path, background_color="#1D1D1D",
+                       max_words=1000, max_font_size=135, width=1080, height=1080)
+        wc.generate_from_frequencies(full_terms_dict)
+
+        # Save the image
+        image = wc.to_image()
+        image.save(os.path.join(home, "output", "wordclouds", f"{self.title}.jpg"))
+
+        print(f"Generated word clouds for {self.title}")
+
+    def generate_colorwords(self, text):
+        """
+        Creates an html file with colored words
+        """
+        home = os.getcwd()
+
+        with open("colors.json", "r") as file:
+            color_list = json.load(file)
+
+        color_words = [x for x in word_tokenize(text) if x.lower() in color_list]
+        color_values = [f'<p style="color:{color_list[color.lower()]}";>{color.upper()} </p>' for color in color_words]
+
+        with open(os.path.join(home, "output", "wordcolors", f"{self.title}.html"), "w") as file:
+            file.write(f"""<head><meta charset="utf-8">
+                           <link rel="stylesheet" type="text/css" href="style.css">
+                           </head>
+                           <body style="background-color: #191919';">
+                           {''.join(color_values)}</body>""")
+
+        print(f"Generated colorwords for {self.title}")
+
+    def generate_webpage(self):
+        pass
 
     def __str__(self):
         """
@@ -162,3 +235,6 @@ class Library:
 
         # Add the book to the general bookshelf
         self.general_book_list.append(book)
+
+    def generate_webpage(self):
+        pass
