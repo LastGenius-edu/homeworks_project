@@ -7,7 +7,7 @@ from book_downloader import search, download
 from library import Library
 
 
-def main():
+def run():
     book_list = []
     author_list = []
 
@@ -26,4 +26,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    run()
