@@ -171,9 +171,7 @@ class Book:
         with open(os.path.join(home, "output", "wordcolors", f"{self.title}.html"), "w") as file:
             file.write(f"""<head><meta charset="utf-8">
                            <link rel="stylesheet" type="text/css" href="style.css">
-                           </head>
-                           <body style="background-color: #191919';">
-                           {''.join(color_values)}</body>""")
+                           </head><body">{''.join(color_values)}</body>""")
 
         print(f"Generated colorwords for {self.title}")
 
