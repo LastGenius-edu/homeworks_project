@@ -6,10 +6,13 @@ MIT License 2020
 import os
 import re
 import json
+import nltk
+import codecs
 import multidict as multidict
 from wordcloud import WordCloud
 from PIL import Image
 from nltk.tokenize import word_tokenize
+from nltk.corpus import stopwords
 
 
 class Category:
@@ -108,9 +111,11 @@ class Book:
         self.filename = filename
         self.authors = authors
         self.year = year
+        self.frequency_dist = dict()
 
         text = self.get_text()
-        self.generate_wordcloud(text)
+        self.get_most_popular_words(text)
+        self.generate_wordcloud()
         self.generate_colorwords(text)
         self.generate_webpage()
 
@@ -124,23 +129,40 @@ class Book:
             text = file.read()
         return text
 
-    def generate_wordcloud(self, text):
+    def get_most_popular_words(self, text):
+        """
+        Gets 100 most popular words and their frequency
+        """
+        all_stopwords = set(stopwords.words('english'))
+
+        words = nltk.word_tokenize(text)
+
+        # Remove single-character tokens (mostly punctuation)
+        words = [word for word in words if len(word) > 1]
+
+        # Remove numbers
+        words = [word for word in words if not word.isnumeric()]
+
+        # Lowercase all words (default_stopwords are lowercase too)
+        words = [word.lower() for word in words]
+
+        # Remove stopwords
+        words = [word for word in words if word not in all_stopwords]
+
+        # Calculate frequency distribution
+        frequency_dist = nltk.FreqDist(words)
+
+        for word, frequency in frequency_dist.most_common(500):
+            self.frequency_dist[word] = frequency
+
+        print(f"Generated 500 popular words for the {self.title}")
+
+    def generate_wordcloud(self):
         """
         Creates a wordcloud based on frequency of words
         Saves into a jpg image
         """
         home = os.getcwd()
-        # Making dict for counting frequencies
-        full_terms_dict = multidict.MultiDict()
-        tmp_dict = {}
-
-        for word in text.split(" "):
-            if re.match(r"a|the|an|the|to|in|for|of|or|by|with|is|on|that|be", word) or len(word) < 4:
-                continue
-            val = tmp_dict.get(word, 0)
-            tmp_dict[word.lower()] = val + 1
-        for key in tmp_dict:
-            full_terms_dict.add(key, tmp_dict[key])
 
         # Path for the font for the image
         font_path = os.path.join(home, "output", "wordclouds", "Montserrat-Bold.ttf")
@@ -148,7 +170,7 @@ class Book:
         # Generating a WordCloud from the previously  made frequency dict
         wc = WordCloud(font_path=font_path, background_color="#1D1D1D",
                        max_words=1000, max_font_size=135, width=1080, height=1080)
-        wc.generate_from_frequencies(full_terms_dict)
+        wc.generate_from_frequencies(self.frequency_dist)
 
         # Save the image
         image = wc.to_image()

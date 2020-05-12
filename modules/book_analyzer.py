@@ -8,7 +8,7 @@ from library import Library
 
 
 def run():
-    book_list = []
+    book_list = ["Macbeth"]
     author_list = []
 
     with open("book_list.txt", "r") as file:
@@ -20,8 +20,8 @@ def run():
             author_list.append(line.replace("\n", ""))
 
     library = Library()
-    books = search(book_list, author_list) + [2701]
-    print(books)
+    # books = [2701] + search(book_list, author_list)
+    books = [2701]
     download(books, library)
 
 

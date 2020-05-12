@@ -52,6 +52,7 @@ def search(title_list=None, authors_list=None):
     for title in title_list:
         found_texts = list(get_etexts("title", title))
         if found_texts:
+            print(f"Found {title}")
             for id_number in found_texts:
                 book_list.add(id_number)
 
@@ -91,12 +92,13 @@ def download(book_list, library):
     for book_number in book_list:
         title = list(get_metadata('title', book_number))
 
-        if title:
+        if title and list(get_metadata('language', book_number))[0] == "en":
             # prepare the string for the file name
-            filename = ''.join(e for e in title[0] if e.isalnum() or e == ' ') + ".txt"
+            filename = ''.join(e for e in title[0] if e.isalnum() or e == ' ')[:40] + ".txt"
 
             if filename[:-4] in read_list:
                 logger.info(f" File <{filename[:35]}...> already processed and downloaded")
+                gutenberg_titles[filename[:-4]] = list(get_metadata('author', book_number))[0]
                 continue
             try:
                 text = strip_headers(load_etext(book_number)).strip()
@@ -127,19 +129,26 @@ def download(book_list, library):
     # Searching for the books on Goodreads, reading their metadata
     for book_title, book_author in gutenberg_titles.items():
         try:
-            lst = gc.search_books(book_title, search_field='title')
+            if book_title in titles:
+                lst = titles[book_title]
 
-            if not lst:
-                continue
+                logger.info(f" Found Goodreads metadata for <{book_title[:35]}...>")
+
+                library.add_book(book_title, f"{book_title}.txt", book_author, lst[2])
             else:
-                book = lst[0]
+                lst = gc.search_books(book_title, search_field='title')
 
-            publication_year = dict(dict(book.work)['original_publication_year'])['#text']
+                if not lst:
+                    continue
+                else:
+                    book = lst[0]
 
-            logger.info(f" Found Goodreads metadata for <{book_title[:35]}...>")
-            titles[book_title] = (f"{book_title}.txt", book_author, publication_year)
+                publication_year = dict(dict(book.work)['original_publication_year'])['#text']
 
-            library.add_book(book_title, f"{book_title}.txt", book_author, publication_year)
+                logger.info(f" Found Goodreads metadata for <{book_title[:35]}...>")
+                titles[book_title] = (f"{book_title}.txt", book_author, publication_year)
+
+                library.add_book(book_title, f"{book_title}.txt", book_author, publication_year)
         except (request.GoodreadsRequestException, KeyError, TypeError):
             continue
 
