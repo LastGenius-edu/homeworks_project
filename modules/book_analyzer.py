@@ -21,8 +21,9 @@ def run():
 
     library = Library()
     # books = [2701] + search(book_list, author_list)
-    books = [2701]
+    books = [2701, 215]
     download(books, library)
+    library.generate_freqdist()
 
 
 if __name__ == '__main__':

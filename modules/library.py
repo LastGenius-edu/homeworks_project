@@ -4,15 +4,13 @@ Sultanov Andriy
 MIT License 2020
 """
 import os
-import re
 import json
 import nltk
-import codecs
-import multidict as multidict
 from wordcloud import WordCloud
 from PIL import Image
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
+from nltk.corpus import names
 
 
 class Category:
@@ -117,6 +115,8 @@ class Book:
         self.get_most_popular_words(text)
         self.generate_wordcloud()
         self.generate_colorwords(text)
+        self.generate_dispersion_plot(text)
+        self.generate_name_dispersion_plot(text)
         self.generate_webpage()
 
     def get_text(self):
@@ -197,6 +197,36 @@ class Book:
 
         print(f"Generated colorwords for {self.title}")
 
+    def generate_dispersion_plot(self, text):
+        """
+        Generates dispersion plot of top 10 words by frequency
+        """
+        home = os.getcwd()
+        my_text = nltk.Text(word_tokenize(text))
+        my_text.dispersion_plot(list(self.frequency_dist.keys())[:10]).savefig(os.path.join(home, "output", "dispersion", f"{self.title}.png"))
+
+    def generate_name_dispersion_plot(self, text):
+        """
+        Generates dispersion plot of names, supposedly
+        """
+        male_names = names.words("male.txt")
+        female_names = names.words("female.txt")
+        met_male_names = set()
+        met_female_names = set()
+
+        for word in word_tokenize(text):
+            if word in male_names:
+                met_male_names.add(word)
+            if word in female_names:
+                met_female_names.add(word)
+
+        print(met_male_names)
+        print(met_female_names)
+
+        my_text = nltk.Text(word_tokenize(text))
+        my_text.dispersion_plot(list(met_male_names))
+        my_text.dispersion_plot(list(met_female_names))
+
     def generate_webpage(self):
         pass
 
@@ -255,6 +285,29 @@ class Library:
 
         # Add the book to the general bookshelf
         self.general_book_list.append(book)
+
+    def generate_freqdist(self):
+        """
+        Generates frequency word ditribution for all the books on a timeline
+        """
+        # top_ten_list = dict()
+        # for book in self.general_book_list:
+        #     for word, value in book.frequency_dist.items():
+        #         value = top_ten_list.get(word, 0) + value
+        #         top_ten_list[word] = value
+        #
+        # top_ten_list = {k: v for k, v in sorted(top_ten_list.items(), key=lambda item: item[1], reverse=True)[:10]}
+
+        cfd = nltk.ConditionalFreqDist()
+        for book in self.general_book_list:
+            condition = book.year
+            top_ten = {k: v for k, v in sorted(book.frequency_dist.items(), key=lambda item: item[1], reverse=True)[:10]}
+            for word, value in top_ten.items():
+                cfd[condition][word] = value
+
+        print("Generated Frequency Distribution for all books")
+
+        cfd.plot()
 
     def generate_webpage(self):
         pass
