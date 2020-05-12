@@ -6,11 +6,18 @@ MIT License 2020
 import os
 import json
 import nltk
+import pylab
+import logging
+import matplotlib.pyplot as plt
 from wordcloud import WordCloud
 from PIL import Image
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 from nltk.corpus import names
+
+# Setting up the logger
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 
 class Category:
@@ -18,6 +25,7 @@ class Category:
     Category class
     Acts as an Author, Year
     """
+
     def __init__(self, name):
         """
         Creates a Category object to contain category's books
@@ -53,6 +61,7 @@ class CategoryList:
     """
     CategoryList class - a container for categories
     """
+
     def __init__(self, name):
         """
         Creates the CategoryList instance
@@ -96,6 +105,7 @@ class Book:
     """
     Book class
     """
+
     def __init__(self, title, filename, authors, year):
         """
         Initializes a Book instance
@@ -155,7 +165,7 @@ class Book:
         for word, frequency in frequency_dist.most_common(500):
             self.frequency_dist[word] = frequency
 
-        print(f"Generated 500 popular words for the {self.title}")
+        logger.info(f" Generated 500 popular words for the {self.title}")
 
     def generate_wordcloud(self):
         """
@@ -176,7 +186,7 @@ class Book:
         image = wc.to_image()
         image.save(os.path.join(home, "output", "wordclouds", f"{self.title}.jpg"))
 
-        print(f"Generated word clouds for {self.title}")
+        logger.info(f" Generated word clouds for {self.title}")
 
     def generate_colorwords(self, text):
         """
@@ -195,7 +205,31 @@ class Book:
                            <link rel="stylesheet" type="text/css" href="style.css">
                            </head><body">{''.join(color_values)}</body>""")
 
-        print(f"Generated colorwords for {self.title}")
+        logger.info(f" Generated colorwords for {self.title}")
+
+    @staticmethod
+    def __dispersion_graph(text, words, filepath, title):
+        """
+        Generates a dispersion graph from text for words.
+        Saves the png in filepath
+        """
+        fig = plt.figure(figsize=(18, 7), dpi=250)
+        plt.rcParams['axes.facecolor'] = "#191919"
+
+        words.reverse()
+        points = [(x, y) for x in range(len(text))
+                  for y in range(len(words))
+                  if text[x] == words[y]]
+
+        x, y = zip(*points)
+        pylab.plot(x, y, "b|", scalex=.1, color="#BB86FC")
+        pylab.yticks(range(len(words)), words, color="#BB86FC")
+        pylab.xticks(color="#BB86FC")
+        pylab.ylim(-1, len(words))
+        title_obj = pylab.title(title, color="#BB86FC")
+        plt.setp(title_obj, color="#BB86FC")
+        pylab.xlabel("Word Offset", color="#BB86FC")
+        pylab.savefig(filepath, facecolor="#191919", edgecolor="none")
 
     def generate_dispersion_plot(self, text):
         """
@@ -203,29 +237,46 @@ class Book:
         """
         home = os.getcwd()
         my_text = nltk.Text(word_tokenize(text))
-        my_text.dispersion_plot(list(self.frequency_dist.keys())[:10]).savefig(os.path.join(home, "output", "dispersion", f"{self.title}.png"))
+
+        my_text = list(my_text)
+        words = list(self.frequency_dist.keys())[:10]
+        filepath = os.path.join(home, "output", "dispersion", f"{self.title}.png")
+        title = f"Lexical Dispersion Plot of top-10 words for {self.title}"
+        self.__dispersion_graph(my_text, words, filepath, title)
+
+        logger.info(f" Finished generating dispersion plots for top 10 words of {self.title}")
 
     def generate_name_dispersion_plot(self, text):
         """
         Generates dispersion plot of names, supposedly
         """
+        home = os.getcwd()
         male_names = names.words("male.txt")
         female_names = names.words("female.txt")
-        met_male_names = set()
-        met_female_names = set()
+        met_male_names = dict()
+        met_female_names = dict()
 
         for word in word_tokenize(text):
             if word in male_names:
-                met_male_names.add(word)
+                value = met_male_names.get(word, 0)
+                met_male_names[word] = value + 1
             if word in female_names:
-                met_female_names.add(word)
+                value = met_female_names.get(word, 0)
+                met_female_names[word] = value + 1
 
-        print(met_male_names)
-        print(met_female_names)
+        met_male_names = [k for k, v in sorted(met_male_names.items(), key=lambda item: item[1], reverse=True)[:10]]
+        met_female_names = [k for k, v in sorted(met_female_names.items(), key=lambda item: item[1], reverse=True)[:10]]
 
-        my_text = nltk.Text(word_tokenize(text))
-        my_text.dispersion_plot(list(met_male_names))
-        my_text.dispersion_plot(list(met_female_names))
+        my_text = list(nltk.Text(word_tokenize(text)))
+        filepath = os.path.join(home, "output", "malenames", f"{self.title}.png")
+        title = f"Lexical Dispersion Plot of top-10 male names for {self.title}"
+        self.__dispersion_graph(my_text, list(met_male_names), filepath, title)
+
+        filepath = os.path.join(home, "output", "femalenames", f"{self.title}.png")
+        title = f"Lexical Dispersion Plot of top-10 female names for {self.title}"
+        self.__dispersion_graph(my_text, list(met_female_names), filepath, title)
+
+        logger.info(f" Finished generating names dispersion plots for {self.title}")
 
     def generate_webpage(self):
         pass
@@ -266,12 +317,12 @@ class Library:
         # And remember for further easier linking
         if author not in self.authors_list:
             self.authors_list.add_category(author)
-            print(f"Created author {author}")
+            logger.info(f" Created author {author}")
         real_author = self.authors_list[author]
 
         if year not in self.published_years:
             self.published_years.add_category(year)
-            print(f"Created year {year}")
+            logger.info(f" Created year {year}")
         real_year = self.published_years[year]
 
         # Create a Book instance with pre-processed parameters
@@ -281,7 +332,7 @@ class Library:
         self.authors_list[author].add_book(book)
         self.published_years[year].add_book(book)
 
-        print(f"Created book {book}")
+        logger.info(f" Created book {book}")
 
         # Add the book to the general bookshelf
         self.general_book_list.append(book)
@@ -298,16 +349,17 @@ class Library:
         #
         # top_ten_list = {k: v for k, v in sorted(top_ten_list.items(), key=lambda item: item[1], reverse=True)[:10]}
 
-        cfd = nltk.ConditionalFreqDist()
-        for book in self.general_book_list:
-            condition = book.year
-            top_ten = {k: v for k, v in sorted(book.frequency_dist.items(), key=lambda item: item[1], reverse=True)[:10]}
-            for word, value in top_ten.items():
-                cfd[condition][word] = value
+        # cfd = nltk.ConditionalFreqDist()
+        # for book in self.general_book_list:
+        #     condition = book.year
+        #     top_ten = {k: v for k, v in
+        #                sorted(book.frequency_dist.items(), key=lambda item: item[1], reverse=True)[:10]}
+        #     for word, value in top_ten.items():
+        #         cfd[condition][word] = value
 
-        print("Generated Frequency Distribution for all books")
+        # logger.info(" Generated Frequency Distribution for all books")
 
-        cfd.plot()
+        # cfd.plot()
 
     def generate_webpage(self):
         pass
