@@ -14,7 +14,7 @@ from PIL import Image
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 from nltk.corpus import names
-from webpage_generation import bookpage
+from webpage_generation import bookpage, category_page
 
 
 # Setting up the logger
@@ -44,7 +44,12 @@ class Category:
         self.books.append(book)
 
     def generate_webpage(self):
-        pass
+        home = os.getcwd()
+
+        with open(os.path.join(home, "website", "templates", "categories", f"{self.name}.html"), "w") as file:
+            file.write(category_page(self))
+
+        logger.info(f" Generated webpage for {self.name}")
 
     def __str__(self):
         """
@@ -371,4 +376,8 @@ class Library:
         # cfd.plot()
 
     def generate_webpage(self):
-        pass
+        for category in self.authors_list.categories:
+            category.generate_webpage()
+
+        for category in self.published_years.categories:
+            category.generate_webpage()

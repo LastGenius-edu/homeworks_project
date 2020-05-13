@@ -7,3 +7,4 @@ examples/keys.py
 modules/keys.py
 modules/output/
 modules/website/templates/books/
+modules/website/templates/categories/

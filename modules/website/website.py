@@ -50,6 +50,20 @@ def title():
         return redirect(url_for(error))
 
 
+@app.route("/category")
+def category():
+    """
+    (None) -> None
+
+    Function that loads the error page
+    """
+    title = request.args.get('title')
+    try:
+        return render_template(os.path.join("categories", f"{title}.html"))
+    except FileNotFoundError:
+        return redirect(url_for(error))
+
+
 @app.route("/error")
 def error():
     """

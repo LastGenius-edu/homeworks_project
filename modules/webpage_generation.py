@@ -3,7 +3,7 @@ def bookpage(title, wordcolor):
     <html>
         <head>
             <meta charset="utf-8">
-            <link rel="stylesheet" type="text/css" href="style.css">
+            <link rel="stylesheet" type="text/css" href="../style.css">
             <link rel="shortcut icon" type="image/png" href="favicon.png"/>
             <title>{title}</title>
         </head>
@@ -56,3 +56,42 @@ def bookpage(title, wordcolor):
             </table>
         </body>
     </html>"""
+
+
+def category_page(category):
+    start_page = f"""
+    <!-- Sultanov Andriy -->
+    <!-- MIT License 2020 -->
+    <html>
+        <head>
+            <meta charset="utf-8">
+            <link rel="stylesheet" type="text/css" href="../style.css">
+            <link rel="shortcut icon" type="image/png" href="favicon.png"/>
+            <title>{category.name}</title>
+        </head>
+    
+        <body class="body">
+            <table class="tablecategory">
+                <tr class="rowcategory">
+                    <td class="categorytitle" colspan="7"> 
+                        <h1 class="categorycenter">{category.name}</h1>
+                    </td>
+                </tr>"""
+
+    cells = len(category.books)
+    rows = (cells // 6) + 1
+
+    for i in range(rows):
+        start_page += """<tr class="animatedcategoryrow">"""
+        for book in category.books[i*6:cells-(i*6)]:
+            start_page += f"""<td class="tablecell">
+                            <div class="categorybox">
+                            <a href="https://website.com/?title={book.title}">
+                                <h2>{book.title}</h2>
+                            </a>
+                            </div>
+                            </td>"""
+        start_page += """</tr>"""
+    start_page += """</table></body></html>"""
+
+    return start_page

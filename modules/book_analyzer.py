@@ -25,7 +25,7 @@ def run():
     books = [2701, 215]
     download(books, library)
     print("Finished downloading")
-    library.generate_freqdist()
+    library.generate_webpage()
 
 
 if __name__ == '__main__':
