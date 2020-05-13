@@ -212,6 +212,8 @@ class Book:
         """
         Generates a dispersion graph from text for words.
         Saves the png in filepath
+
+        Based on source code from nltk.draw modules
         """
         fig = plt.figure(figsize=(18, 7), dpi=250)
         plt.rcParams['axes.facecolor'] = "#191919"

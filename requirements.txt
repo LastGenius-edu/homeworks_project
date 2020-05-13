@@ -3,4 +3,8 @@
 
 goodreads
 gutenberg
+gutenberg_cleaner
 flask
+nltk
+matplotlib
+wordcloud
