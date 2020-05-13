@@ -20,9 +20,11 @@ def run():
             author_list.append(line.replace("\n", ""))
 
     library = Library()
+    print("Created library instance")
     # books = [2701] + search(book_list, author_list)
     books = [2701, 215]
     download(books, library)
+    print("Finished downloading")
     library.generate_freqdist()
 
 

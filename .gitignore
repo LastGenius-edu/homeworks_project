@@ -6,3 +6,4 @@ __pycache__/
 examples/keys.py
 modules/keys.py
 modules/output/
+modules/website/templates/books/

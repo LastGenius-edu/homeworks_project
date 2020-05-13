@@ -87,6 +87,7 @@ def download(book_list, library):
     except (FileNotFoundError, JSONDecodeError):
         read_list = []
 
+
     gutenberg_titles = dict()
     # Downloading book by book from the list
     for book_number in book_list:
@@ -159,6 +160,7 @@ def download(book_list, library):
     logger.info("Metadata files download is finished")
 
 
-if __name__ == "__main__":
-    # Just a fake test for me, doesn't run cuz the module is imported usually
-    download("Moby Dick")
+# if __name__ == "__main__":
+#     print("Started populating the cache")
+#     __populate_cache()
+#     print("Finished populating the cache")

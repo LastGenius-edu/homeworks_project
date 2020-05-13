@@ -85,6 +85,12 @@ h2 {
     box-shadow: inset 0 0 0 4px #1D1D1D, 0 0 1px rgba(0, 0, 0, 0);
 }
 
+.bookbox:hover,
+.bookbox:focus,
+.bookbox:active,
+.booksinglebox:hover,
+.booksinglebox:focus,
+.booksinglebox:active,
 .categorybox:hover,
 .categorybox:focus,
 .categorybox:active,
@@ -168,6 +174,75 @@ h2 {
 
 .categorytitle {
     text-align: center;
+}
+
+/* Book page*/
+
+.bookcenter {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    width: 50vw;
+    bottom: 5vh;
+    height: 3vh;
+    color: #E1E1E1;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12vh;
+    font-weight: 700;
+}
+
+.bookrow {
+    background: #121212;
+    height: 74vh;
+    vertical-align: middle;
+}
+
+.bookbox {
+    background: #1D1D1D;
+    width: 70vh;
+    height: 70vh;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-property: box-shadow;
+    transition-property: box-shadow;
+    box-shadow: inset 0 0 0 4px #1D1D1D, 0 0 1px rgba(0, 0, 0, 0);
+}
+
+.booksinglebox {
+    background: #1D1D1D;
+    width: 151vh;
+    height: 70vh;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-property: box-shadow;
+    transition-property: box-shadow;
+    box-shadow: inset 0 0 0 4px #1D1D1D, 0 0 1px rgba(0, 0, 0, 0);
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+p {
+    display: inline;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2vh;
+    font-weight: 700;
+    text-shadow: -0.4px 0 white, 0 0.4px white, 0.4px 0 white, 0 -0.4px white;
 }
 
 /* Error */

@@ -14,6 +14,8 @@ from PIL import Image
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 from nltk.corpus import names
+from webpage_generation import bookpage
+
 
 # Setting up the logger
 logging.basicConfig(level=logging.INFO)
@@ -201,14 +203,12 @@ class Book:
         color_values = [f'<p style="color:{color_list[color.lower()]}";>{color.upper()} </p>' for color in color_words]
 
         with open(os.path.join(home, "output", "wordcolors", f"{self.title}.html"), "w") as file:
-            file.write(f"""<head><meta charset="utf-8">
-                           <link rel="stylesheet" type="text/css" href="style.css">
-                           </head><body">{''.join(color_values)}</body>""")
+            file.write(f"""{''.join(color_values[:150])}</body>""")
 
         logger.info(f" Generated colorwords for {self.title}")
 
     @staticmethod
-    def __dispersion_graph(text, words, filepath, title):
+    def __dispersion_graph(text, words, filepath):
         """
         Generates a dispersion graph from text for words.
         Saves the png in filepath
@@ -228,10 +228,10 @@ class Book:
         pylab.yticks(range(len(words)), words, color="#BB86FC")
         pylab.xticks(color="#BB86FC")
         pylab.ylim(-1, len(words))
-        title_obj = pylab.title(title, color="#BB86FC")
+        title_obj = pylab.title("", color="#BB86FC")
         plt.setp(title_obj, color="#BB86FC")
         pylab.xlabel("Word Offset", color="#BB86FC")
-        pylab.savefig(filepath, facecolor="#191919", edgecolor="none")
+        pylab.savefig(filepath, facecolor="#1D1D1D", edgecolor="none")
 
     def generate_dispersion_plot(self, text):
         """
@@ -244,7 +244,7 @@ class Book:
         words = list(self.frequency_dist.keys())[:10]
         filepath = os.path.join(home, "output", "dispersion", f"{self.title}.png")
         title = f"Lexical Dispersion Plot of top-10 words for {self.title}"
-        self.__dispersion_graph(my_text, words, filepath, title)
+        self.__dispersion_graph(my_text, words, filepath)
 
         logger.info(f" Finished generating dispersion plots for top 10 words of {self.title}")
 
@@ -272,16 +272,23 @@ class Book:
         my_text = list(nltk.Text(word_tokenize(text)))
         filepath = os.path.join(home, "output", "malenames", f"{self.title}.png")
         title = f"Lexical Dispersion Plot of top-10 male names for {self.title}"
-        self.__dispersion_graph(my_text, list(met_male_names), filepath, title)
+        self.__dispersion_graph(my_text, list(met_male_names), filepath)
 
         filepath = os.path.join(home, "output", "femalenames", f"{self.title}.png")
         title = f"Lexical Dispersion Plot of top-10 female names for {self.title}"
-        self.__dispersion_graph(my_text, list(met_female_names), filepath, title)
+        self.__dispersion_graph(my_text, list(met_female_names), filepath)
 
         logger.info(f" Finished generating names dispersion plots for {self.title}")
 
     def generate_webpage(self):
-        pass
+        home = os.getcwd()
+        with open(os.path.join(home, "output", "wordcolors", f"{self.title}.html"), "r") as file:
+            wordcolor = file.read()
+
+        with open(os.path.join(home, "website", "templates", "books", f"{self.title}.html"), "w") as file:
+            file.write(bookpage(self.title, wordcolor))
+
+        logger.info(f" Generated webpage for {self.title}")
 
     def __str__(self):
         """

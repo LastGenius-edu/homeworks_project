@@ -4,6 +4,7 @@ Sultanov Andriy
 MIT License 2020
 """
 import logging
+import os.path
 from flask import Flask, redirect, render_template, request, url_for
 
 
@@ -14,6 +15,10 @@ app.config["DEBUG"] = True
 # Setting up the logger
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+
+HOME = os.getcwd()
+with open(os.path.join(HOME, "..", "output", "log.json"), "r") as file:
+    
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -28,6 +33,18 @@ def index():
 
     if request.method == "POST":
         logger.info("POST")
+
+
+@app.route("/title")
+def title():
+    '''
+    (None) -> None
+
+    Function that loads the error page
+    '''
+    title = request.args.get('title')
+    if title in
+    return render_template("error.html")
 
 
 @app.route("/error")
