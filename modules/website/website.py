@@ -24,9 +24,9 @@ with open(os.path.join(HOME, "..", "output", "log.json"), "r") as file:
 
 @app.route("/", methods=["GET", "POST"])
 def index():
-    '''
+    """
     Function for the main page, handling all the user input
-    '''
+    """
     logger.info("INDEX")
     if request.method == "GET":
         logger.info("GET")
@@ -38,11 +38,11 @@ def index():
 
 @app.route("/title")
 def title():
-    '''
+    """
     (None) -> None
 
     Function that loads the error page
-    '''
+    """
     title = request.args.get('title')
     if title in TITLES:
         return render_template(os.path.join("books", f"{title}.html"))
@@ -52,9 +52,9 @@ def title():
 
 @app.route("/error")
 def error():
-    '''
+    """
     (None) -> None
 
     Function that loads the error page
-    '''
+    """
     return render_template("error.html")

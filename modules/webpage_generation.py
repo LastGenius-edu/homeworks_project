@@ -5,7 +5,7 @@ def bookpage(title, wordcolor):
             <meta charset="utf-8">
             <link rel="stylesheet" type="text/css" href="style.css">
             <link rel="shortcut icon" type="image/png" href="favicon.png"/>
-            <title>Book title</title>
+            <title>{title}</title>
         </head>
 
         <body class="body">
@@ -32,7 +32,7 @@ def bookpage(title, wordcolor):
                 <tr class="bookrow">
                     <td class="tablecell" colspan="2">
                         <div class="booksinglebox">
-                            <h2>Lexical Dispersion Plot of TOP-10 words for book title</h2>
+                            <h2>Lexical Dispersion Plot of TOP-10 words for {title}</h2>
                             <img width="85%" height="85%" style="" src="../../../output/dispersion/{title}.png">
                         </div>
                     </td>
@@ -40,7 +40,7 @@ def bookpage(title, wordcolor):
                 <tr class="bookrow">
                     <td class="tablecell" colspan="2">
                         <div class="booksinglebox">
-                            <h2>Lexical Dispersion Plot of TOP-10 female names for book title</h2>
+                            <h2>Lexical Dispersion Plot of TOP-10 female names for {title}</h2>
                             <img width="85%" height="85%" style="" src="../../../output/femalenames/{title}.png">
                         </div>
                     </td>
@@ -48,7 +48,7 @@ def bookpage(title, wordcolor):
                 <tr class="bookrow">
                     <td class="tablecell" colspan="2">
                         <div class="booksinglebox">
-                            <h2>Lexical Dispersion Plot of TOP-10 male names for book title</h2>
+                            <h2>Lexical Dispersion Plot of TOP-10 male names for {title}</h2>
                             <img width="85%" height="85%" style="" src="../../../output/malenames/{title}.png">
                         </div>
                     </td>
