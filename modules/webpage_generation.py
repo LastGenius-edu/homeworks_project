@@ -1,10 +1,10 @@
-def bookpage(title, wordcolor):
+def book_page(title, wordcolor):
     return f"""
     <html>
         <head>
             <meta charset="utf-8">
             <link rel="stylesheet" type="text/css" href="../style.css">
-            <link rel="shortcut icon" type="image/png" href="favicon.png"/>
+            <link rel="shortcut icon" type="image/png" href="../favicon.png"/>
             <title>{title}</title>
         </head>
 
@@ -66,7 +66,7 @@ def category_page(category):
         <head>
             <meta charset="utf-8">
             <link rel="stylesheet" type="text/css" href="../style.css">
-            <link rel="shortcut icon" type="image/png" href="favicon.png"/>
+            <link rel="shortcut icon" type="image/png" href="../favicon.png"/>
             <title>{category.name}</title>
         </head>
     
@@ -85,13 +85,126 @@ def category_page(category):
         start_page += """<tr class="animatedcategoryrow">"""
         for book in category.books[i*6:cells-(i*6)]:
             start_page += f"""<td class="tablecell">
-                            <div class="categorybox">
                             <a href="https://website.com/?title={book.title}">
+                            <div class="categorybox">
                                 <h2>{book.title}</h2>
-                            </a>
                             </div>
+                            </a>
                             </td>"""
         start_page += """</tr>"""
     start_page += """</table></body></html>"""
 
     return start_page
+
+
+def home_page(books, authors, years, topics):
+    page = f"""
+    <!-- Sultanov Andriy -->
+    <!-- MIT License 2020 -->
+    <html>
+        <head>
+            <meta charset="utf-8">
+            <link rel="stylesheet" type="text/css" href="style.css">
+            <link rel="shortcut icon" type="image/png" href="favicon.png"/>
+            <title>Home</title>
+        </head>
+    
+        <body class="body">
+            <h1 class="title">Textual Analysis Data Visualization</h1>
+            <h1 class="bytitle">Project by Andriy Sultanov</h1>
+            <div class="subtitlediv">
+                <table>
+                    <tr>
+                        <td>
+                            <h1 class="subtitle">Categories</h1>
+                        </td>
+                        <td>
+                            <div class='icon-scroll'></div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <table class="tablecategories">
+                <tr class="tablerow">
+                    <td> 
+                        <h1 class="category">Books</h1>
+                    </td>
+    """
+
+    for book in books[:5]:
+        page += f"""
+                    <td class="tablecell">
+                    <a href="https://website.com/?title={book.title}">
+                        <div class="box">
+                            <h2>{book.title}</h2>
+                        </div>
+                    </a>
+                    </td>"""
+
+    page += """</tr>
+                <tr class="tablerow">
+                <td>
+                    <h1 class="category"1>Authors</h1>
+                </td>"""
+
+    for author in authors[:5]:
+        page += f"""<td class="tablecell">
+                    <a href="https://website.com/?title={author.name}">
+                        <div class="box">
+                            <h2>{author.name}</h2>
+                        </div>
+                    </a>
+                    </td>"""
+
+    page += """</tr>
+                <tr class="tablerow">
+                    <td>
+                        <h1 class="category">Times</h1>
+                    </td>"""
+
+    for year in years[:5]:
+        page += f"""
+                    <td class="tablecell">
+                    <a href="https://website.com/?title={year.name}">
+                        <div class="box">
+                            <h2>{year.name}</h2>
+                        </div>
+                    </a>
+                    </td>"""
+
+    page += """</tr>
+                <tr class="tablerow">
+                    <td>
+                        <h1 class="category">Topics</h1>
+                    </td>
+                    <td class="tablecell">
+                        <div class="box">
+                            <h2>Title</h2>
+                        </div>
+                    </td>
+                    <td class="tablecell">
+                        <div class="box">
+                            <h2>Title</h2>
+                        </div>
+                    </td>
+                    <td class="tablecell">
+                        <div class="box">
+                            <h2>Title</h2>
+                        </div>
+                    </td>
+                    <td class="tablecell">
+                        <div class="box">
+                            <h2>Title</h2>
+                        </div>
+                    </td>
+                    <td class="tablecell">
+                        <div class="box">
+                            <h2>Title</h2>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </body>
+    </html>"""
+
+    return page

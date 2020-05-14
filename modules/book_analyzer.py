@@ -22,7 +22,7 @@ def run():
     library = Library()
     print("Created library instance")
     # books = [2701] + search(book_list, author_list)
-    books = [2701, 215]
+    books = [2701, 215, 1400, 1342, 1952]
     download(books, library)
     print("Finished downloading")
     library.generate_webpage()

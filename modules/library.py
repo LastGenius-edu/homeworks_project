@@ -14,7 +14,7 @@ from PIL import Image
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 from nltk.corpus import names
-from webpage_generation import bookpage, category_page
+from webpage_generation import book_page, category_page, home_page
 
 
 # Setting up the logger
@@ -208,7 +208,7 @@ class Book:
         color_values = [f'<p style="color:{color_list[color.lower()]}";>{color.upper()} </p>' for color in color_words]
 
         with open(os.path.join(home, "output", "wordcolors", f"{self.title}.html"), "w") as file:
-            file.write(f"""{''.join(color_values[:150])}</body>""")
+            file.write(f"""{''.join(color_values[:250])}</body>""")
 
         logger.info(f" Generated colorwords for {self.title}")
 
@@ -291,7 +291,7 @@ class Book:
             wordcolor = file.read()
 
         with open(os.path.join(home, "website", "templates", "books", f"{self.title}.html"), "w") as file:
-            file.write(bookpage(self.title, wordcolor))
+            file.write(book_page(self.title, wordcolor))
 
         logger.info(f" Generated webpage for {self.title}")
 
@@ -376,6 +376,13 @@ class Library:
         # cfd.plot()
 
     def generate_webpage(self):
+        homepage = home_page(self.general_book_list, self.authors_list.categories, self.published_years.categories, None)
+        home = os.getcwd()
+        with open(os.path.join(home, "website", "templates", "home.html"), "w") as file:
+            file.write(homepage)
+
+        logger.info(" Finished generating the home page")
+
         for category in self.authors_list.categories:
             category.generate_webpage()
 
