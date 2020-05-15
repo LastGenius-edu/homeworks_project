@@ -4,7 +4,7 @@
 ![](https://img.shields.io/github/languages/code-size/LastGenius-edu/homeworks_project)
 ## Project name: English_Literature_Analysis_Project
 
-# [Finished site](http://lastgenius.pythonanywhere.com)
+# [Finished site](https://text-analysis-ucu.herokuapp.com)
 ![](https://github.com/LastGenius-edu/homeworks_project/raw/master/docs/site.png)
 
 ## Description: 
