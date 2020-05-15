@@ -146,8 +146,7 @@ class Book:
         """
         Reads the file and returns plaintext in a string
         """
-        cur_path = os.path.dirname(os.path.realpath(__file__))
-        filename = os.path.join(cur_path, "static", "output", "books", self.filename)
+        filename = os.path.join(HOME, "static", "output", "books", self.filename)
         with open(filename, "r", errors="ignore", encoding="UTF-8") as file:
             text = file.read()
         return text
@@ -203,12 +202,15 @@ class Book:
         """
         Creates an html file with colored words
         """
+        # Load the list of all colors
         with open("colors.json", "r") as file:
             color_list = json.load(file)
 
+        # Find all the colors mentioned in the book and assign a hex value to them
         color_words = [x for x in word_tokenize(text) if x.lower() in color_list]
         color_values = [f'<p style="color:{color_list[color.lower()]}";>{color.upper()} </p>' for color in color_words]
 
+        # Save the paragraphs with words and values for further HTML use
         with open(os.path.join(HOME, "static", "output", "wordcolors", f"{self.title}.html"), "w") as file:
             file.write(f"""{''.join(color_values[:250])}</body>""")
 
@@ -222,14 +224,17 @@ class Book:
 
         Based on source code from nltk.draw modules
         """
+        # Set some figure parameters
         fig = plt.figure(figsize=(18, 7), dpi=250)
         plt.rcParams['axes.facecolor'] = "#191919"
 
+        # Reverse the words and generate the points for the graph
         words.reverse()
         points = [(x, y) for x in range(len(text))
                   for y in range(len(words))
                   if text[x] == words[y]]
 
+        # Generate the plot and the titles with needed colors
         x, y = zip(*points)
         pylab.plot(x, y, "b|", scalex=.1, color="#BB86FC")
         pylab.yticks(range(len(words)), words, color="#BB86FC")
@@ -244,12 +249,13 @@ class Book:
         """
         Generates dispersion plot of top 10 words by frequency
         """
+        # Turn the tokenized text into NTLK class for method use
         my_text = nltk.Text(word_tokenize(text))
-
         my_text = list(my_text)
+
+        # Generate a list of top-10 words by their frequency and save the image
         words = list(self.frequency_dist.keys())[:10]
         filepath = os.path.join(HOME, "static", "output", "dispersion", f"{self.title}.png")
-        title = f"Lexical Dispersion Plot of top-10 words for {self.title}"
         self.__dispersion_graph(my_text, words, filepath)
 
         logger.info(f" Finished generating dispersion plots for top 10 words of {self.title}")
@@ -258,11 +264,13 @@ class Book:
         """
         Generates dispersion plot of names, supposedly
         """
+
+        # Lookup all the possible male and female names from the lists
         male_names = names.words("male.txt")
         female_names = names.words("female.txt")
-        met_male_names = dict()
-        met_female_names = dict()
+        met_male_names, met_female_names = dict(), dict()
 
+        # Search for all the instances of names in the text, save the frequency
         for word in word_tokenize(text):
             if word in male_names:
                 value = met_male_names.get(word, 0)
@@ -271,16 +279,18 @@ class Book:
                 value = met_female_names.get(word, 0)
                 met_female_names[word] = value + 1
 
+        # Save top-10 met names by their frequency
         met_male_names = [k for k, v in sorted(met_male_names.items(), key=lambda item: item[1], reverse=True)[:10]]
         met_female_names = [k for k, v in sorted(met_female_names.items(), key=lambda item: item[1], reverse=True)[:10]]
 
         my_text = list(nltk.Text(word_tokenize(text)))
+
+        # Save top-10 male met names by frequency in a plot image
         filepath = os.path.join(HOME, "static", "output", "malenames", f"{self.title}.png")
-        title = f"Lexical Dispersion Plot of top-10 male names for {self.title}"
         self.__dispersion_graph(my_text, list(met_male_names), filepath)
 
+        # Save top-10 female met names by frequency in a plot image
         filepath = os.path.join(HOME, "static", "output", "femalenames", f"{self.title}.png")
-        title = f"Lexical Dispersion Plot of top-10 female names for {self.title}"
         self.__dispersion_graph(my_text, list(met_female_names), filepath)
 
         logger.info(f" Finished generating names dispersion plots for {self.title}")
@@ -289,9 +299,11 @@ class Book:
         """
         Generates a webpage for the book with linked name and graphs
         """
+        # Looks up HTML paragraphs of met colors
         with open(os.path.join(HOME, "static", "output", "wordcolors", f"{self.title}.html"), "r") as file:
             wordcolor = file.read()
 
+        # Save the webpage
         with open(os.path.join(HOME, "templates", "books", f"{self.title}.html"), "w") as file:
             file.write(webpage_generation.book_page(self.title, wordcolor))
 
