@@ -1,4 +1,8 @@
 def book_page(title, wordcolor):
+    """
+    Generates a webpage for the book.
+    Compatible with flask template system
+    """
     return f"""
     <html>
         <head>
@@ -59,14 +63,18 @@ def book_page(title, wordcolor):
 
 
 def category_page(category):
-    start_page = """
+    """
+    Generates a webpage for the category
+    Compatible with flask template system
+    """
+    start_page = f"""
     <!-- Sultanov Andriy -->
     <!-- MIT License 2020 -->
     <html>
         <head>
             <meta charset="utf-8">
-            <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
-            <link rel="shortcut icon" type="image/png" href="{{ url_for('static', filename='css/style.css') }}"/>
+            <link rel="stylesheet" type="text/css" href="{{{{ url_for('static', filename='css/style.css') }}}}">
+            <link rel="shortcut icon" type="image/png" href="{{{{ url_for('static', filename='css/style.css') }}}}"/>
             <title>{category.name}</title>
         </head>
     
@@ -98,6 +106,10 @@ def category_page(category):
 
 
 def home_page(books, authors, years, topics):
+    """
+    Generates a home webpage
+    Compatible with flask template system
+    """
     page = """
     <!-- Sultanov Andriy -->
     <!-- MIT License 2020 -->

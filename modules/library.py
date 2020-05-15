@@ -14,12 +14,14 @@ from PIL import Image
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 from nltk.corpus import names
-from webpage_generation import book_page, category_page, home_page
+import webpage_generation
 
 
 # Setting up the logger
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+
+HOME = os.path.dirname(os.path.realpath(__file__))
 
 
 class Category:
@@ -44,10 +46,11 @@ class Category:
         self.books.append(book)
 
     def generate_webpage(self):
-        home = os.path.dirname(os.path.realpath(__file__))
-
-        with open(os.path.join(home, "templates", "categories", f"{self.name}.html"), "w") as file:
-            file.write(category_page(self))
+        """
+        Generates a webpage for the category
+        """
+        with open(os.path.join(HOME, "templates", "categories", f"{self.name}.html"), "w") as file:
+            file.write(webpage_generation.category_page(self))
 
         logger.info(f" Generated webpage for {self.name}")
 
@@ -86,6 +89,9 @@ class CategoryList:
         pass
 
     def __getitem__(self, item):
+        """
+        Returns one of the categories from name
+        """
         assert self.__contains__(item), "Can only get existing categories"
 
         for category in self.categories:
@@ -179,10 +185,8 @@ class Book:
         Creates a wordcloud based on frequency of words
         Saves into a jpg image
         """
-        home = os.path.dirname(os.path.realpath(__file__))
-
         # Path for the font for the image
-        font_path = os.path.join(home, "static", "output", "wordclouds", "Montserrat-Bold.ttf")
+        font_path = os.path.join(HOME, "static", "output", "wordclouds", "Montserrat-Bold.ttf")
 
         # Generating a WordCloud from the previously  made frequency dict
         wc = WordCloud(font_path=font_path, background_color="#1D1D1D",
@@ -191,7 +195,7 @@ class Book:
 
         # Save the image
         image = wc.to_image()
-        image.save(os.path.join(home, "static", "output", "wordclouds", f"{self.title}.jpg"))
+        image.save(os.path.join(HOME, "static", "output", "wordclouds", f"{self.title}.jpg"))
 
         logger.info(f" Generated word clouds for {self.title}")
 
@@ -199,15 +203,13 @@ class Book:
         """
         Creates an html file with colored words
         """
-        home = os.path.dirname(os.path.realpath(__file__))
-
         with open("colors.json", "r") as file:
             color_list = json.load(file)
 
         color_words = [x for x in word_tokenize(text) if x.lower() in color_list]
         color_values = [f'<p style="color:{color_list[color.lower()]}";>{color.upper()} </p>' for color in color_words]
 
-        with open(os.path.join(home, "static", "output", "wordcolors", f"{self.title}.html"), "w") as file:
+        with open(os.path.join(HOME, "static", "output", "wordcolors", f"{self.title}.html"), "w") as file:
             file.write(f"""{''.join(color_values[:250])}</body>""")
 
         logger.info(f" Generated colorwords for {self.title}")
@@ -242,12 +244,11 @@ class Book:
         """
         Generates dispersion plot of top 10 words by frequency
         """
-        home = os.path.dirname(os.path.realpath(__file__))
         my_text = nltk.Text(word_tokenize(text))
 
         my_text = list(my_text)
         words = list(self.frequency_dist.keys())[:10]
-        filepath = os.path.join(home, "static", "output", "dispersion", f"{self.title}.png")
+        filepath = os.path.join(HOME, "static", "output", "dispersion", f"{self.title}.png")
         title = f"Lexical Dispersion Plot of top-10 words for {self.title}"
         self.__dispersion_graph(my_text, words, filepath)
 
@@ -257,7 +258,6 @@ class Book:
         """
         Generates dispersion plot of names, supposedly
         """
-        home = os.path.dirname(os.path.realpath(__file__))
         male_names = names.words("male.txt")
         female_names = names.words("female.txt")
         met_male_names = dict()
@@ -275,23 +275,25 @@ class Book:
         met_female_names = [k for k, v in sorted(met_female_names.items(), key=lambda item: item[1], reverse=True)[:10]]
 
         my_text = list(nltk.Text(word_tokenize(text)))
-        filepath = os.path.join(home, "static", "output", "malenames", f"{self.title}.png")
+        filepath = os.path.join(HOME, "static", "output", "malenames", f"{self.title}.png")
         title = f"Lexical Dispersion Plot of top-10 male names for {self.title}"
         self.__dispersion_graph(my_text, list(met_male_names), filepath)
 
-        filepath = os.path.join(home, "static", "output", "femalenames", f"{self.title}.png")
+        filepath = os.path.join(HOME, "static", "output", "femalenames", f"{self.title}.png")
         title = f"Lexical Dispersion Plot of top-10 female names for {self.title}"
         self.__dispersion_graph(my_text, list(met_female_names), filepath)
 
         logger.info(f" Finished generating names dispersion plots for {self.title}")
 
     def generate_webpage(self):
-        home = os.path.dirname(os.path.realpath(__file__))
-        with open(os.path.join(home, "static", "output", "wordcolors", f"{self.title}.html"), "r") as file:
+        """
+        Generates a webpage for the book with linked name and graphs
+        """
+        with open(os.path.join(HOME, "static", "output", "wordcolors", f"{self.title}.html"), "r") as file:
             wordcolor = file.read()
 
-        with open(os.path.join(home, "templates", "books", f"{self.title}.html"), "w") as file:
-            file.write(book_page(self.title, wordcolor))
+        with open(os.path.join(HOME, "templates", "books", f"{self.title}.html"), "w") as file:
+            file.write(webpage_generation.book_page(self.title, wordcolor))
 
         logger.info(f" Generated webpage for {self.title}")
 
@@ -376,9 +378,11 @@ class Library:
         # cfd.plot()
 
     def generate_webpage(self):
-        homepage = home_page(self.general_book_list, self.authors_list.categories, self.published_years.categories, None)
-        home = os.path.dirname(os.path.realpath(__file__))
-        with open(os.path.join(home, "templates", "home.html"), "w") as file:
+        """
+        Generates homepage
+        """
+        homepage = webpage_generation.home_page(self.general_book_list, self.authors_list.categories, self.published_years.categories, None)
+        with open(os.path.join(HOME, "templates", "home.html"), "w") as file:
             file.write(homepage)
 
         logger.info(" Finished generating the home page")

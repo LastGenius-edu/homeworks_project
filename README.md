@@ -35,9 +35,9 @@ In order to ensure the quick response and search given the size and the number o
 ## Installation: 
 
 ```bash
-git clone https://github.com/LastGenius-edu/homeworks_project.git
-cd homeworks_project
-pip install -r requirements.txt
+$ git clone https://github.com/LastGenius-edu/homeworks_project.git
+$ cd homeworks_project
+$ pip install -r requirements.txt
 ```
 
 ## Usage: 
