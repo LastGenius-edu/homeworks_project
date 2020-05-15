@@ -17,8 +17,8 @@ app.config["DEBUG"] = True
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-HOME = os.getcwd()
-with open(os.path.join(HOME, "..", "output", "log.json"), "r") as file:
+HOME = os.path.dirname(os.path.realpath(__file__))
+with open(os.path.join(HOME, "static", "output", "log.json"), "r") as file:
     TITLES = json.load(file)
 
 
@@ -30,7 +30,8 @@ def index():
     logger.info("INDEX")
     if request.method == "GET":
         logger.info("GET")
-        return render_template("main_page.html")
+        print(url_for('static', filename='css/style.css'))
+        return render_template("home.html")
 
     if request.method == "POST":
         logger.info("POST")
@@ -45,7 +46,7 @@ def title():
     """
     title = request.args.get('title')
     if title in TITLES:
-        return render_template(os.path.join("books", f"{title}.html"))
+        return render_template(f"books/{title}.html")
     else:
         return redirect(url_for(error))
 
@@ -59,7 +60,7 @@ def category():
     """
     title = request.args.get('title')
     try:
-        return render_template(os.path.join("categories", f"{title}.html"))
+        return render_template(f"categories/{title}.html")
     except FileNotFoundError:
         return redirect(url_for(error))
 
@@ -72,3 +73,7 @@ def error():
     Function that loads the error page
     """
     return render_template("error.html")
+
+
+if __name__ == '__main__':
+    app.run(debug=True)

@@ -82,7 +82,7 @@ def download(book_list, library):
 
     # Reading a list of previously downloaded texts in order to optimize downloads
     try:
-        with open(os.path.join(current_path, "output", "read_list.json"), "r") as file:
+        with open(os.path.join(current_path, "static", "output", "read_list.json"), "r") as file:
             read_list = json.load(file)
     except (FileNotFoundError, JSONDecodeError):
         read_list = []
@@ -110,19 +110,19 @@ def download(book_list, library):
             read_list.append(filename[:-4])
             gutenberg_titles[filename[:-4]] = list(get_metadata('author', book_number))[0]
 
-            filepath = os.path.join(current_path, "output", "books", filename)
+            filepath = os.path.join(current_path, "static", "output", "books", filename)
             with open(filepath, "w", encoding="UTF-8", errors="ignore") as output_file:
                 output_file.write(text)
             logger.info(f" File <{filename[:35]}...> download finished")
 
-    with open(os.path.join(current_path, "output", "read_list.json"), "w") as file:
+    with open(os.path.join(current_path, "static", "output", "read_list.json"), "w") as file:
         json.dump(read_list, file, indent=4)
 
     logger.info(" Plaintext files download is finished")
 
     # Reading the log file with acquired metadata
     try:
-        with open(os.path.join(current_path, "output", "log.json"), "r") as file:
+        with open(os.path.join(current_path, "static", "output", "log.json"), "r") as file:
             titles = json.load(file)
     except (FileNotFoundError, JSONDecodeError):
         titles = dict()
@@ -154,7 +154,7 @@ def download(book_list, library):
             continue
 
     # Saving the acquired metadata in the file
-    with open(os.path.join(current_path, "output", "log.json"), "w") as file:
+    with open(os.path.join(current_path, "static", "output", "log.json"), "w") as file:
         json.dump(titles, file, indent=4)
 
     logger.info("Metadata files download is finished")

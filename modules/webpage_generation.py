@@ -3,8 +3,8 @@ def book_page(title, wordcolor):
     <html>
         <head>
             <meta charset="utf-8">
-            <link rel="stylesheet" type="text/css" href="../style.css">
-            <link rel="shortcut icon" type="image/png" href="../favicon.png"/>
+            <link rel="stylesheet" type="text/css" href="{{{{ url_for('static', filename='css/style.css') }}}}">
+            <link rel="shortcut icon" type="image/png" href="{{{{ url_for('static', filename='css/style.css') }}}}"/>
             <title>{title}</title>
         </head>
 
@@ -19,7 +19,7 @@ def book_page(title, wordcolor):
                     <td class="tablecell" align="center">
                         <div class="bookbox">
                             <h2>Word cloud</h2>
-                            <img width="82%" height="82%" src="../../../output/wordclouds/{title}.jpg">
+                            <img width="82%" height="82%" src="{{{{ url_for('static', filename='output/wordclouds/{title}.jpg') }}}}">
                         </div>
                     </td>
                     <td class="tablecell">
@@ -33,7 +33,7 @@ def book_page(title, wordcolor):
                     <td class="tablecell" colspan="2">
                         <div class="booksinglebox">
                             <h2>Lexical Dispersion Plot of TOP-10 words for {title}</h2>
-                            <img width="85%" height="85%" style="" src="../../../output/dispersion/{title}.png">
+                            <img width="85%" height="85%" style="" src="{{{{ url_for('static', filename='output/dispersion/{title}.png') }}}}">
                         </div>
                     </td>
                 </tr>
@@ -41,7 +41,7 @@ def book_page(title, wordcolor):
                     <td class="tablecell" colspan="2">
                         <div class="booksinglebox">
                             <h2>Lexical Dispersion Plot of TOP-10 female names for {title}</h2>
-                            <img width="85%" height="85%" style="" src="../../../output/femalenames/{title}.png">
+                            <img width="85%" height="85%" style="" src="{{{{ url_for('static', filename='output/femalenames/{title}.png') }}}}">
                         </div>
                     </td>
                 </tr>
@@ -49,7 +49,7 @@ def book_page(title, wordcolor):
                     <td class="tablecell" colspan="2">
                         <div class="booksinglebox">
                             <h2>Lexical Dispersion Plot of TOP-10 male names for {title}</h2>
-                            <img width="85%" height="85%" style="" src="../../../output/malenames/{title}.png">
+                            <img width="85%" height="85%" style="" src="{{{{ url_for('static', filename='output/malenames/{title}.png') }}}}">
                         </div>
                     </td>
                 </tr>
@@ -59,14 +59,14 @@ def book_page(title, wordcolor):
 
 
 def category_page(category):
-    start_page = f"""
+    start_page = """
     <!-- Sultanov Andriy -->
     <!-- MIT License 2020 -->
     <html>
         <head>
             <meta charset="utf-8">
-            <link rel="stylesheet" type="text/css" href="../style.css">
-            <link rel="shortcut icon" type="image/png" href="../favicon.png"/>
+            <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+            <link rel="shortcut icon" type="image/png" href="{{ url_for('static', filename='css/style.css') }}"/>
             <title>{category.name}</title>
         </head>
     
@@ -85,7 +85,7 @@ def category_page(category):
         start_page += """<tr class="animatedcategoryrow">"""
         for book in category.books[i*6:cells-(i*6)]:
             start_page += f"""<td class="tablecell">
-                            <a href="https://website.com/?title={book.title}">
+                            <a href="https://text-analysis-ucu.herokuapp.com/title?title={book.title}">
                             <div class="categorybox">
                                 <h2>{book.title}</h2>
                             </div>
@@ -98,14 +98,14 @@ def category_page(category):
 
 
 def home_page(books, authors, years, topics):
-    page = f"""
+    page = """
     <!-- Sultanov Andriy -->
     <!-- MIT License 2020 -->
     <html>
         <head>
             <meta charset="utf-8">
-            <link rel="stylesheet" type="text/css" href="style.css">
-            <link rel="shortcut icon" type="image/png" href="favicon.png"/>
+            <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+            <link rel="shortcut icon" type="image/png" href="{{ url_for('static', filename='css/favicon.png') }}"/>
             <title>Home</title>
         </head>
     
@@ -134,7 +134,7 @@ def home_page(books, authors, years, topics):
     for book in books[:5]:
         page += f"""
                     <td class="tablecell">
-                    <a href="https://website.com/?title={book.title}">
+                    <a href="https://text-analysis-ucu.herokuapp.com/title?title={book.title}">
                         <div class="box">
                             <h2>{book.title}</h2>
                         </div>
@@ -149,7 +149,7 @@ def home_page(books, authors, years, topics):
 
     for author in authors[:5]:
         page += f"""<td class="tablecell">
-                    <a href="https://website.com/?title={author.name}">
+                    <a href="https://text-analysis-ucu.herokuapp.com/category?title={author.name}">
                         <div class="box">
                             <h2>{author.name}</h2>
                         </div>
@@ -165,7 +165,7 @@ def home_page(books, authors, years, topics):
     for year in years[:5]:
         page += f"""
                     <td class="tablecell">
-                    <a href="https://website.com/?title={year.name}">
+                    <a href="https://text-analysis-ucu.herokuapp.com/category?title={year.name}">
                         <div class="box">
                             <h2>{year.name}</h2>
                         </div>

@@ -5,6 +5,8 @@ __pycache__/
 */__pycache__/
 examples/keys.py
 modules/keys.py
-modules/output/
-modules/website/templates/books/
-modules/website/templates/categories/
+modules/static
+modules/templates
+modules/requirements.txt
+modules/runtime.txt
+modules/Procfile
