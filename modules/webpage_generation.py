@@ -8,7 +8,7 @@ def book_page(title, wordcolor):
         <head>
             <meta charset="utf-8">
             <link rel="stylesheet" type="text/css" href="{{{{ url_for('static', filename='css/style.css') }}}}">
-            <link rel="shortcut icon" type="image/png" href="{{{{ url_for('static', filename='css/style.css') }}}}"/>
+            <link rel="shortcut icon" type="image/png" href="{{{{ url_for('static', filename='img/favicon.png') }}}}"/>
             <title>{title}</title>
         </head>
 
@@ -74,7 +74,7 @@ def category_page(category):
         <head>
             <meta charset="utf-8">
             <link rel="stylesheet" type="text/css" href="{{{{ url_for('static', filename='css/style.css') }}}}">
-            <link rel="shortcut icon" type="image/png" href="{{{{ url_for('static', filename='css/style.css') }}}}"/>
+            <link rel="shortcut icon" type="image/png" href="{{{{ url_for('static', filename='img/favicon.png') }}}}"/>
             <title>{category.name}</title>
         </head>
     
@@ -117,7 +117,7 @@ def home_page(books, authors, years, topics):
         <head>
             <meta charset="utf-8">
             <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
-            <link rel="shortcut icon" type="image/png" href="{{ url_for('static', filename='css/favicon.png') }}"/>
+            <link rel="shortcut icon" type="image/png" href="{{ url_for('static', filename='img/favicon.png') }}"/>
             <title>Home</title>
         </head>
     
