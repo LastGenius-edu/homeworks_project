@@ -4,7 +4,7 @@
 ![](https://img.shields.io/github/languages/code-size/LastGenius-edu/homeworks_project)
 ## Project name: English_Literature_Analysis_Project
 
-[Finished site](http://lastgenius.pythonanywhere.com)
+#[Finished site](http://lastgenius.pythonanywhere.com)
 ![](https://github.com/LastGenius-edu/homeworks_project/raw/master/docs/site.png)
 
 ## Description: 
@@ -34,7 +34,19 @@ In order to ensure the quick response and search given the size and the number o
 
 ## Installation: 
 
+```bash
+git clone https://github.com/LastGenius-edu/homeworks_project.git
+cd homeworks_project
+pip install -r requirements.txt
+```
+
 ## Usage: 
+1. Create book and author lists for download and analysis in book_list.txt and author_list.txt
+2. Launch the analyzer and webpage generator
+    ```bash
+    $ python modules/book_analyzer.py
+    ```
+3. Launch Flask app at [modules/app.py](https://github.com/LastGenius-edu/homeworks_project/blob/master/modules/app.py)
 
 ## Contributing: 
 
