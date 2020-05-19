@@ -22,9 +22,6 @@ Gilman, Charlotte Perkins
 Melville, Herman
 Kipling, Rudyard
 Joyce, James
-Montgomery, L. M. (Lucy Maud)
-Hawthorne, Nathaniel
-Garnett, Constance
 Conrad, Joseph
 Homer
 Kafka, Franz
@@ -44,13 +41,3 @@ Shaw, Bernard
 Lang, Andrew
 Christie, Agatha
 Stoker, Bram
-Cervantes Saavedra, Miguel de
-Betten, Francis S. (Francis Sales)
-Maude, Louise
-Maude, Aylmer
-Brontë, Charlotte
-Leech, John
-Potter, Beatrix
-Wilder, Marshall Pinckney
-Balzac, Honoré de
-Maupassant, Guy de
