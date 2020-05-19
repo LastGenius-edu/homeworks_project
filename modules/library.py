@@ -85,9 +85,6 @@ class CategoryList:
         """
         self.categories.append(Category(name))
 
-    def generate_webpage(self):
-        pass
-
     def __getitem__(self, item):
         """
         Returns one of the categories from name
@@ -112,6 +109,12 @@ class CategoryList:
         Returns a string representation of CategoryList container
         """
         return f"CategoryList {self.name}: {', '.join(category.__repr__() for category in self.categories)}"
+
+    def generate_webpage(self, title):
+        webpage = webpage_generation.category_list_page(self)
+
+        with open(os.path.join(HOME, "templates", "categories", title), "w") as file:
+            file.write(webpage)
 
 
 class Book:
@@ -398,6 +401,13 @@ class Library:
             file.write(homepage)
 
         logger.info(" Finished generating the home page")
+
+        self.authors_list.generate_webpage("authors.html")
+        self.published_years.generate_webpage("years.html")
+
+        books_page = webpage_generation.book_list_page(self.general_book_list)
+        with open(os.path.join(HOME, "templates", "categories", "books.html"), "w") as file:
+            file.write(books_page)
 
         for category in self.authors_list.categories:
             category.generate_webpage()

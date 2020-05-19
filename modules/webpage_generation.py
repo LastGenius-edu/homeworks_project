@@ -105,6 +105,92 @@ def category_page(category):
     return start_page
 
 
+def category_list_page(category_list):
+    """
+    Generates a webpage for the category
+    Compatible with flask template system
+    """
+    start_page = f"""
+    <!-- Sultanov Andriy -->
+    <!-- MIT License 2020 -->
+    <html>
+        <head>
+            <meta charset="utf-8">
+            <link rel="stylesheet" type="text/css" href="{{{{ url_for('static', filename='css/style.css') }}}}">
+            <link rel="shortcut icon" type="image/png" href="{{{{ url_for('static', filename='img/favicon.png') }}}}"/>
+            <title>{category_list.name}</title>
+        </head>
+
+        <body class="body">
+            <table class="tablecategory">
+                <tr class="rowcategory">
+                    <td class="categorytitle" colspan="7"> 
+                        <h1 class="categorycenter">{category_list.name}</h1>
+                    </td>
+                </tr>"""
+
+    cells = len(category_list.categories)
+    rows = (cells // 6) + 1
+
+    for i in range(rows):
+        start_page += """<tr class="animatedcategoryrow">"""
+        for category in category_list.categories[i * 6:cells - (i * 6)]:
+            start_page += f"""<td class="tablecell">
+                            <a href="https://text-analysis-ucu.herokuapp.com/category?title={category.name}">
+                            <div class="categorybox">
+                                <h2>{category.name}</h2>
+                            </div>
+                            </a>
+                            </td>"""
+        start_page += """</tr>"""
+    start_page += """</table></body></html>"""
+
+    return start_page
+
+
+def book_list_page(books):
+    """
+    Generates a webpage for the category
+    Compatible with flask template system
+    """
+    start_page = f"""
+    <!-- Sultanov Andriy -->
+    <!-- MIT License 2020 -->
+    <html>
+        <head>
+            <meta charset="utf-8">
+            <link rel="stylesheet" type="text/css" href="{{{{ url_for('static', filename='css/style.css') }}}}">
+            <link rel="shortcut icon" type="image/png" href="{{{{ url_for('static', filename='img/favicon.png') }}}}"/>
+            <title>Books</title>
+        </head>
+
+        <body class="body">
+            <table class="tablecategory">
+                <tr class="rowcategory">
+                    <td class="categorytitle" colspan="7"> 
+                        <h1 class="categorycenter">Books</h1>
+                    </td>
+                </tr>"""
+
+    cells = len(books)
+    rows = (cells // 6) + 1
+
+    for i in range(rows):
+        start_page += """<tr class="animatedcategoryrow">"""
+        for book in books[i * 6:cells - (i * 6)]:
+            start_page += f"""<td class="tablecell">
+                            <a href="https://text-analysis-ucu.herokuapp.com/title?title={book.title}">
+                            <div class="categorybox">
+                                <h2>{book.title}</h2>
+                            </div>
+                            </a>
+                            </td>"""
+        start_page += """</tr>"""
+    start_page += """</table></body></html>"""
+
+    return start_page
+
+
 def home_page(books, authors, years, topics):
     """
     Generates a home webpage
@@ -139,7 +225,9 @@ def home_page(books, authors, years, topics):
             <table class="tablecategories">
                 <tr class="tablerow">
                     <td> 
+                    <a href="https://text-analysis-ucu.herokuapp.com/category?title=books">
                         <h1 class="category">Books</h1>
+                    </a>
                     </td>
     """
 
@@ -156,7 +244,9 @@ def home_page(books, authors, years, topics):
     page += """</tr>
                 <tr class="tablerow">
                 <td>
+                    <a href="https://text-analysis-ucu.herokuapp.com/category?title=authors">
                     <h1 class="category"1>Authors</h1>
+                    </a>
                 </td>"""
 
     for author in authors[:5]:
@@ -171,7 +261,9 @@ def home_page(books, authors, years, topics):
     page += """</tr>
                 <tr class="tablerow">
                     <td>
-                        <h1 class="category">Times</h1>
+                    <a href="https://text-analysis-ucu.herokuapp.com/category?title=years">
+                        <h1 class="category">Years</h1>
+                    </a>
                     </td>"""
 
     for year in years[:5]:
