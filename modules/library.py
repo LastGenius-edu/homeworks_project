@@ -95,6 +95,12 @@ class CategoryList:
             if category.name == item:
                 return category
 
+    def sort(self):
+        """
+        Sorts the year list
+        """
+        self.categories.sort(key=lambda item: item.name)
+
     def __contains__(self, item):
         """
         Checks if the category with the name already exists
@@ -403,6 +409,7 @@ class Library:
         logger.info(" Finished generating the home page")
 
         self.authors_list.generate_webpage("authors.html")
+        self.published_years.sort()
         self.published_years.generate_webpage("years.html")
 
         books_page = webpage_generation.book_list_page(self.general_book_list)
