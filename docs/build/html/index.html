@@ -1,0 +1,281 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Welcome to Homeworks_Project’s documentation! &#8212; Homeworks Project 0.9.0 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="welcome-to-homeworks-project-s-documentation">
+<h1>Welcome to Homeworks_Project’s documentation!<a class="headerlink" href="#welcome-to-homeworks-project-s-documentation" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+<div class="section" id="module-modules.app">
+<span id="website-hosting"></span><h1>Website hosting<a class="headerlink" href="#module-modules.app" title="Permalink to this headline">¶</a></h1>
+<p>Sultanov Andriy
+MIT License 2020</p>
+<dl class="py function">
+<dt id="modules.app.category">
+<code class="sig-prename descclassname">modules.app.</code><code class="sig-name descname">category</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#modules.app.category" title="Permalink to this definition">¶</a></dt>
+<dd><p>(None) -&gt; None</p>
+<p>Function that loads the error page</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="modules.app.error">
+<code class="sig-prename descclassname">modules.app.</code><code class="sig-name descname">error</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#modules.app.error" title="Permalink to this definition">¶</a></dt>
+<dd><p>(None) -&gt; None</p>
+<p>Function that loads the error page</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="modules.app.index">
+<code class="sig-prename descclassname">modules.app.</code><code class="sig-name descname">index</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#modules.app.index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function for the main page, handling all the user input</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="modules.app.title">
+<code class="sig-prename descclassname">modules.app.</code><code class="sig-name descname">title</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#modules.app.title" title="Permalink to this definition">¶</a></dt>
+<dd><p>(None) -&gt; None</p>
+<p>Function that loads the error page</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-modules.book_downloader">
+<span id="book-downloader"></span><h1>Book Downloader<a class="headerlink" href="#module-modules.book_downloader" title="Permalink to this headline">¶</a></h1>
+<p>Sultanov Andriy
+MIT License 2020</p>
+<dl class="py function">
+<dt id="modules.book_downloader.download">
+<code class="sig-prename descclassname">modules.book_downloader.</code><code class="sig-name descname">download</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">book_list</span></em>, <em class="sig-param"><span class="n">library</span></em><span class="sig-paren">)</span><a class="headerlink" href="#modules.book_downloader.download" title="Permalink to this definition">¶</a></dt>
+<dd><p>Downloads and cleans up books from the List of Gutenberg IDs.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="modules.book_downloader.search">
+<code class="sig-prename descclassname">modules.book_downloader.</code><code class="sig-name descname">search</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">title_list</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">authors_list</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#modules.book_downloader.search" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receives two lists of books to download.
+Searches for their availability on Gutenberg and returns list of gutenberg IDs.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-modules.library">
+<span id="library-adt"></span><h1>Library ADT<a class="headerlink" href="#module-modules.library" title="Permalink to this headline">¶</a></h1>
+<p>Sultanov Andriy
+MIT License 2020</p>
+<dl class="py class">
+<dt id="modules.library.Book">
+<em class="property">class </em><code class="sig-prename descclassname">modules.library.</code><code class="sig-name descname">Book</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">title</span></em>, <em class="sig-param"><span class="n">filename</span></em>, <em class="sig-param"><span class="n">authors</span></em>, <em class="sig-param"><span class="n">year</span></em><span class="sig-paren">)</span><a class="headerlink" href="#modules.library.Book" title="Permalink to this definition">¶</a></dt>
+<dd><p>Book class</p>
+<dl class="py method">
+<dt id="modules.library.Book.generate_colorwords">
+<code class="sig-name descname">generate_colorwords</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">text</span></em><span class="sig-paren">)</span><a class="headerlink" href="#modules.library.Book.generate_colorwords" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates an html file with colored words</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="modules.library.Book.generate_dispersion_plot">
+<code class="sig-name descname">generate_dispersion_plot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">text</span></em><span class="sig-paren">)</span><a class="headerlink" href="#modules.library.Book.generate_dispersion_plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates dispersion plot of top 10 words by frequency</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="modules.library.Book.generate_name_dispersion_plot">
+<code class="sig-name descname">generate_name_dispersion_plot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">text</span></em><span class="sig-paren">)</span><a class="headerlink" href="#modules.library.Book.generate_name_dispersion_plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates dispersion plot of names, supposedly</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="modules.library.Book.generate_webpage">
+<code class="sig-name descname">generate_webpage</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#modules.library.Book.generate_webpage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates a webpage for the book with linked name and graphs</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="modules.library.Book.generate_wordcloud">
+<code class="sig-name descname">generate_wordcloud</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#modules.library.Book.generate_wordcloud" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a wordcloud based on frequency of words
+Saves into a jpg image</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="modules.library.Book.get_most_popular_words">
+<code class="sig-name descname">get_most_popular_words</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">text</span></em><span class="sig-paren">)</span><a class="headerlink" href="#modules.library.Book.get_most_popular_words" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets 100 most popular words and their frequency</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="modules.library.Book.get_text">
+<code class="sig-name descname">get_text</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#modules.library.Book.get_text" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads the file and returns plaintext in a string</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="modules.library.Category">
+<em class="property">class </em><code class="sig-prename descclassname">modules.library.</code><code class="sig-name descname">Category</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#modules.library.Category" title="Permalink to this definition">¶</a></dt>
+<dd><p>Category class
+Acts as an Author, Year</p>
+<dl class="py method">
+<dt id="modules.library.Category.add_book">
+<code class="sig-name descname">add_book</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">book</span></em><span class="sig-paren">)</span><a class="headerlink" href="#modules.library.Category.add_book" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds books to the author’s instance</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="modules.library.Category.generate_webpage">
+<code class="sig-name descname">generate_webpage</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#modules.library.Category.generate_webpage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates a webpage for the category</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="modules.library.CategoryList">
+<em class="property">class </em><code class="sig-prename descclassname">modules.library.</code><code class="sig-name descname">CategoryList</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#modules.library.CategoryList" title="Permalink to this definition">¶</a></dt>
+<dd><p>CategoryList class - a container for categories</p>
+<dl class="py method">
+<dt id="modules.library.CategoryList.add_category">
+<code class="sig-name descname">add_category</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#modules.library.CategoryList.add_category" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds the author to the list</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="modules.library.CategoryList.sort">
+<code class="sig-name descname">sort</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#modules.library.CategoryList.sort" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sorts the year list</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-modules.webpage_generation">
+<span id="webpage-generation"></span><h1>Webpage Generation<a class="headerlink" href="#module-modules.webpage_generation" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt id="modules.webpage_generation.book_list_page">
+<code class="sig-prename descclassname">modules.webpage_generation.</code><code class="sig-name descname">book_list_page</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">books</span></em><span class="sig-paren">)</span><a class="headerlink" href="#modules.webpage_generation.book_list_page" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates a webpage for the category
+Compatible with flask template system</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="modules.webpage_generation.book_page">
+<code class="sig-prename descclassname">modules.webpage_generation.</code><code class="sig-name descname">book_page</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">title</span></em>, <em class="sig-param"><span class="n">wordcolor</span></em><span class="sig-paren">)</span><a class="headerlink" href="#modules.webpage_generation.book_page" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates a webpage for the book.
+Compatible with flask template system</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="modules.webpage_generation.category_list_page">
+<code class="sig-prename descclassname">modules.webpage_generation.</code><code class="sig-name descname">category_list_page</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">category_list</span></em><span class="sig-paren">)</span><a class="headerlink" href="#modules.webpage_generation.category_list_page" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates a webpage for the category
+Compatible with flask template system</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="modules.webpage_generation.category_page">
+<code class="sig-prename descclassname">modules.webpage_generation.</code><code class="sig-name descname">category_page</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">category</span></em><span class="sig-paren">)</span><a class="headerlink" href="#modules.webpage_generation.category_page" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates a webpage for the category
+Compatible with flask template system</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="modules.webpage_generation.home_page">
+<code class="sig-prename descclassname">modules.webpage_generation.</code><code class="sig-name descname">home_page</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">books</span></em>, <em class="sig-param"><span class="n">authors</span></em>, <em class="sig-param"><span class="n">years</span></em>, <em class="sig-param"><span class="n">topics</span></em><span class="sig-paren">)</span><a class="headerlink" href="#modules.webpage_generation.home_page" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates a home webpage
+Compatible with flask template system</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="#">Homeworks Project</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Sultanov Andriy.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
