@@ -34,6 +34,8 @@ In order to ensure the quick response and search given the size and the number o
 
 [Домашнє Завдання №4 на Wiki](https://github.com/LastGenius-edu/homeworks_project/wiki/5.-Домашнє-завдання-№4)
 
+[Домашнє Завдання №5 на Wiki](https://github.com/LastGenius-edu/homeworks_project/wiki/6.-Домашнє-завдання-№5)
+
 ## Installation: 
 
 ```bash
