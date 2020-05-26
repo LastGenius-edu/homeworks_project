@@ -91,7 +91,7 @@ def category_page(category):
 
     for i in range(rows):
         start_page += """<tr class="animatedcategoryrow">"""
-        for book in category.books[i*6:cells-(i*6)]:
+        for book in category.books[i*6:(i*6) + 6]:
             start_page += f"""<td class="tablecell">
                             <a href="https://text-analysis-ucu.herokuapp.com/title?title={book.title}">
                             <div class="categorybox">
@@ -134,7 +134,7 @@ def category_list_page(category_list):
 
     for i in range(rows):
         start_page += """<tr class="animatedcategoryrow">"""
-        for category in category_list.categories[i * 6:cells - (i * 6)]:
+        for category in category_list.categories[i * 6:(i * 6) + 6]:
             start_page += f"""<td class="tablecell">
                             <a href="https://text-analysis-ucu.herokuapp.com/category?title={category.name}">
                             <div class="categorybox">
@@ -177,7 +177,7 @@ def book_list_page(books):
 
     for i in range(rows):
         start_page += """<tr class="animatedcategoryrow">"""
-        for book in books[i * 6:cells - (i * 6)]:
+        for book in books[i * 6:(i * 6) + 6]:
             start_page += f"""<td class="tablecell">
                             <a href="https://text-analysis-ucu.herokuapp.com/title?title={book.title}">
                             <div class="categorybox">

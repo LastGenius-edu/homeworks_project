@@ -221,7 +221,7 @@ class Book:
 
         # Save the paragraphs with words and values for further HTML use
         with open(os.path.join(HOME, "static", "output", "wordcolors", f"{self.title}.html"), "w") as file:
-            file.write(f"""{''.join(color_values[:250])}</body>""")
+            file.write(f"""{''.join(color_values[:245])}</body>""")
 
         logger.info(f" Generated colorwords for {self.title}")
 
@@ -253,6 +253,8 @@ class Book:
         plt.setp(title_obj, color="#BB86FC")
         pylab.xlabel("Word Offset", color="#BB86FC")
         pylab.savefig(filepath, facecolor="#1D1D1D", edgecolor="none")
+        pylab.close(fig)
+
 
     def generate_dispersion_plot(self, text):
         """
